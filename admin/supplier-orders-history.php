@@ -187,7 +187,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 									<td>" . $row["unit_price"] . ".00</td>
 									<td>" . $row["quantity"] . "</td>
 									<td>" . ($row["unit_price"] * $row["quantity"]) . ".00</td>
-									<td>" . $row["fname"] . " " . $row["lname"] . " - " . $row["company_name"] . "</td>
+									<td>" . $row["company_name"] . "</td>
 								</tr>";
 						}
 						echo "</tbody>

@@ -137,6 +137,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 			<div class="content">
 
 				<h1>Customers<a onclick="window.print();" class="print">Print</a></h1>
+				<h3 class="print-name">Sethmith Enterprise</h3>
 				<br>
 
 				<style>

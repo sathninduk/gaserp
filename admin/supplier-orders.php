@@ -190,7 +190,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 									<td>" . $row["unit_price"] . ".00</td>
 									<td>" . $row["quantity"] . "</td>
 									<td>" . ($row["unit_price"] * $row["quantity"]) . ".00</td>
-									<td>" . $row["fname"] . " " . $row["lname"] . " - " . $row["company_name"] . "</td>
+									<td>" . $row["company_name"] . "</td>
 									<td><a href=\"./php/supply_order_recived.php?supply_order_id=".$row["supply_order_id"]."&supplier_id=".$row["supplier_id"]."&total_price=".$total_price."&qty=".$row["quantity"]."&product_id=".$row["product_id"]."\" class=\"edit\">Delivered</a></td>
 								</tr>";
 						}
@@ -220,7 +220,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 						if ($result->num_rows > 0) {
 							while ($row = $result->fetch_assoc()) {
 							echo "
-							<option value=\"".$row["supplier_id"]."\">".$row["supplier_id"]." - ".$row["fname"]." ".$row["lname"]."</option>
+							<option value=\"".$row["supplier_id"]."\">".$row["supplier_id"]." - ".$row["company_name"]."</option>
 							";
 							}
 						} else {

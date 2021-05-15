@@ -297,7 +297,9 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 				<div class="row">
 					<div class="col-sm yes-print">
 						<div class="dash_items" style="width: 665px; height: 100%;">
-							<p style="font-weight: 500; display: inline;">Stock</p>
+						
+							<p style="font-weight: 500; display: inline;"><span class="print-name">Sethmith Enterprise</span>Stock</p>
+
 							<a onclick="window.print();" style="display: inline; float: right;" class="print no-print">Print</a>
 							<canvas id="stock" width="400" height="200"></canvas>
 						</div>
