@@ -59,7 +59,7 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 		<div class="admin-content">
 				<div class="content">
 				<h1>Deliveries<a onclick="window.print();" class="print">Print</a></h1>
-				<span class="print-name">Sethmith Enterprise</span>
+				<h3 class="print-name">Sethmith Enterprise</h3>
 				<br>
 					<style>
 						.tbl {

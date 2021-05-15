@@ -145,6 +145,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 		<div class="admin-content">
 				<div class="content">
 				<h1>Supply Orders<a onclick="window.print();" class="print">Print</a></h1>
+				<h3 class="print-name">Sethmith Enterprise</h3>
 				<br>
 					<style>
 						.tbl {

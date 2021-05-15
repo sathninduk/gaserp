@@ -328,7 +328,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 			<div class="content">
 
 				<h2>Sales details of the year <?php echo $year; ?><a onclick="window.print();" class="print">Print</a></h2>
-				<span class="print-name">Sethmith Enterprise</span>
+				<h3 class="print-name">Sethmith Enterprise</h3>
 				<br>
 				<canvas id="sales" width="400" height="200"></canvas>
 				<script>
