@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="style/Reg.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style/main.css">
+	<script src="Js/registration.js"></script>
+</head>
+
+<body>
+	<form method="POST" action="./php/register.php">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-10 offset=md-1">
+					<div class="row">
+						<div class="col-md-5 register-left">
+							<img src="images/bike.jpg">
+							<h3>SETHMITH Gas Delivery</h3>
+							<p>Follow Us</p>
+							<button type="button" class="btn btn-primary">About Us</button>
+						</div>
+						<div class="col-md-7 register-right">
+							<h2>Registration Here </h2>
+							<div class="register-form">
+								<!--<div class="form-group">
+									<b>Title</b>
+									<select name="title" id="name">
+										<option value="mr">Mr</option>
+										<option value="mrs">Mrs</option>
+										<option value="miss">Miss</option>
+										<option value="dr">Dr</option>
+									</select>
+								</div>-->
+								<div class="form-group">
+									<b>Name</b> <br />
+									First Name<input name="fname" type="text" class="form-control" placeholder="eg:Emma"
+										required>
+								</div>
+								<div class="form-group">
+									Last Name<input name="lname" type="text" class="form-control" placeholder="eg:Watson" required>
+								</div>
+								<div class="form-group">
+									<b>Contact Number</b> <br>
+									Mobile :<input name="contact_no" type="number" class="form-control" required>
+									<!--<br> Fixed Line: <input type="text" class="form-control" required>-->
+								</div>
+								<div class="form-group">
+									NIC Number<input name="nic" type="text" maxlength="12" class="form-control" required>
+									<!--<br> Fixed Line: <input type="text" class="form-control" required>-->
+								</div>
+								<div class="form-group">
+									<b>Address</b> <br>
+									No <input name="no" type="text" class="form-control" required>
+									Road <input name="road" type="text" class="form-control" required>
+									City <input name="city" type="text" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<b>Email</b> <input name="email" type="email" class="form-control"
+										placeholder="eg:emmawatson@gmail.com" required>
+								</div>
+								<div class="form-group">
+									Password <input name="password" type="password" class="form-control" required>
+								</div>
+								<div class="form-group">
+									Confirm Password <input name="password_verify" type="password" class="form-control"
+										required>
+								</div>
+								<div class="form-group">
+									<input required type="checkbox"> <label> I agree to the terms and conditions
+									</label>
+								</div>
+								<button type="submit" class="btn btn-primary">Register</button>
+								<a href="./login.php" class="btn btn-primary-1">Back Login</a>
+
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</form>
+</body>
+
+</html>

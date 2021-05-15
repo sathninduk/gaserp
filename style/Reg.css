@@ -1,0 +1,77 @@
+body{
+	background: linear-gradient(to bottom, #808080, #3fada8);
+	margin-top:45px !important;
+	font-family:'Poppins',sans-serif;
+}
+.register-left{
+	text-align:center;
+	color:#fff;
+	padding:30px;
+}
+.register-left img{
+	margin-top:60px;
+	margin-bottom:18px;
+	width:110px;
+	animation:mover 1s infinite alternate;
+}
+.register-left p{
+	padding:20px 20px 0;
+}
+.register-left .btn-primary{
+	border-radius:1.5rem;
+	border:none;
+	width:120px;
+	background:#f8f8f8;
+	font-weight:600;
+	color:#555;
+	margin-top:20px;
+	padding:10px;
+}
+.register-left .btn-primary:hover{
+	background:#000;
+}
+.register-right{
+	border:none;
+	background:#f8f8f8;
+	padding:50px;
+}
+.register-right h2{
+	text-align:center;
+	margin-bottom:10px;
+	color:#555;
+}
+.register-form{
+	padding:30px;
+}
+.register-right .btn-primary{
+	float:left;
+	border-radius:1.5rem;
+	border:none;
+	width:120px;
+	background:linear-gradient(rgb(0,139,139),#008B8B);
+	font-weight:600;
+	color:#fff;
+	margin-top:20px;
+	padding:5px;
+}
+.register-right .btn-primary-1{
+	float:right;
+	border-radius:1.5rem;
+	border:none;
+	width:120px;
+	background:linear-gradient(rgb(0,139,139),#008B8B);
+	font-weight:600;
+	color:#fff;
+	margin-top:20px;
+	padding:5px;
+}
+.register-right .btn-primary:hover,.register-right .btn-primary-1:hover{
+	background:linear-gradient(rgb(169,169,169),#A9A9A9);
+}
+
+@keyframes mover{
+	0%{transform:translateY(0);}
+	100%{transform:translateY(-20px);}
+}
+
+

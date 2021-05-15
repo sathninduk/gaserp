@@ -1,0 +1,129 @@
+body{
+	margin:0;
+	padding:0;	
+	font-family:'Poppins',sans-serif;
+}
+.container{
+	width:100%;
+	height:100%;
+}
+.content{
+	height:100%;
+	width:100%;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:-1;
+}
+.content li{
+	position:absolute;
+	width:100%;
+	height:100%;
+	background-position: center center;
+	background-repeat:no-repeat;
+	background-size:cover;
+	opacity:-2;
+	animation:images 18s linear infinite;
+}
+.content li:nth-child(1){
+	background-image:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.70)),url(images/i1.jpg);
+}
+.content li:nth-child(2){
+	background-image:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.70)),url(images/s1.jpg);
+	animation-delay:6s;
+}
+.content li:nth-child(3){
+	background-image:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.70)),url(images/s2.png);
+	animation-delay:12s;
+}
+.content li:nth-child(4){
+	background-image:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.70)),url(images/i2.jpg);
+	animation-delay:18s;
+}
+.content li:nth-child(5){
+	background-image:linear-gradient(rgba(0,0,0,0.70),rgba(0,0,0,0.70)),url(images/s4.jpg);
+	animation-delay:24s;
+}
+@keyframes images{
+	0%{opacity:0; animation-timing-function:ease-in;}
+	10%{opacity:1; animation-timing-function:ease-out;}
+	25%{opacity:1; animation-timing-function:ease-in;}
+	50%{opacity:0; animation-timing-function:ease-in;}
+	100%{opacity:0; animation-timing-function:ease-in;}
+}
+
+.form-box{
+	width:380px;
+	height:400px;
+	position:relative;
+	margin:5% auto;
+	background:#fff;
+	padding:10px;
+	top:-30px;
+	overflow:hidden;
+	padding-left:30px;
+}
+h3{
+	padding-left:20px;
+}
+.button-box{
+	width:220px;
+	margin:35px auto;
+	position:relative;
+	box-shadow:0 0 20px 0px #00cdac;
+	border-radius:30px;
+}
+.toggle-btn{
+	padding:10px 30px;
+	cursor:pointer;
+	background:transparent;
+	border:0;
+	outline:none;
+	position:relative;
+}
+#btn{
+	top:0;
+	left:0;
+	position:absolute;
+	width:110px;
+	height:100%;
+	background: linear-gradient(to right, #02aab0, #00cdac);
+	border-radius:30px;
+	transition:.5s;
+}	
+.input-group{
+	top:150px;
+	position:absolute;
+	width:280px;
+	transition:.5s;
+}
+
+.input-field{
+	width:100%;
+	padding:10px 0;
+	margin:5px 0;
+	border-left:0;
+	border-top:0;
+	border-right:0;
+	border-bottom:1px solid #999;
+	outline:none;
+	background:transparent;
+}
+.submit-btn{
+	width:85%;
+	padding:10px 30px;
+	cursor:pointer;
+	display:block;
+	margin:auto;
+	background: linear-gradient(to right, #007991, #78ffd6);
+	border:0;
+	outline:none;
+	border-radius:30px;
+}
+
+#delivery{
+	left:50px;
+}
+#pickup{
+	left:450px;
+}
