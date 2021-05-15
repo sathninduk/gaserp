@@ -10,7 +10,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 
     include "../../php/connection.php";
 
-    //get last id - delivery
+    //get last id - supplier
     $sql_get_1 = "SELECT supplier_id FROM supplier ORDER BY supplier_id DESC LIMIT 1";
     $result = $conn->query($sql_get_1);
     if ($result->num_rows > 0) {
