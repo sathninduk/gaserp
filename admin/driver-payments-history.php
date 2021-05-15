@@ -18,7 +18,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 	<html>
 
 	<head>
-		<title>Drivers</title>
+		<title>Driver Payments - History</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
 		<link rel="stylesheet" href="../style/Admin.css">
@@ -134,62 +134,62 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 			</div>
 		</div>
 		<div class="admin-content">
-		
 				<div class="content">
-					<h1>Drivers<a onclick="window.print();" class="print">Print</a></h1>
-					<h3 class="print-name">Sethmith Enterprise</h3>
-					<br>
-
+				<h1>Driver Payments - History<a onclick="window.print();" class="print">Print</a></h1>
+				<h3 class="print-name">Sethmith Enterprise</h3>
+				<br>
 					<style>
 						.tbl {
 							font-size: 14px;
 							margin-left: 0px;
+							width: 65vw;
 							margin-top: 0px;
-							width: 60vw;
 						}
 					</style>
 					<?php
-					//$sql = "SELECT driver_id, fname, lname, contact_no, email, status FROM driver";
-					$sql = "SELECT * FROM driver INNER JOIN driver_payments ON driver.driver_id=driver_payments.driver_id";
+					
+					// Order Data Fetch
+					//$sql = "SELECT * FROM orders WHERE obtaining_method_id=1";
+					//$sql = "SELECT * FROM orders INNER JOIN customer ON orders.customer_id=customer.customer_id";
+
+					$sql = "SELECT * FROM (driver_payments_history INNER JOIN driver ON driver.driver_id = driver_payments_history.driver_id) ORDER BY driver_payments_history.id";
+
 					$result = $conn->query($sql);
 
 					if ($result->num_rows > 0) {
 						echo "
 						<table class=\"tbl\">
 									<thead>
-										<th>ID</th>
-										<th>Name</th>
-										<th>Contact No</th>
 										
-										<th>Debit Balance (LKR)</th>
-										<th>Sallery (LKR)</th>
-										<th>Last Transaction</th>
-										<!--<th>Action</th>-->
+										<th style=\"max-width: 120px;\">Date</th>
+										<th style=\"max-width: 80px;\">Driver ID</th>
+										<th style=\"max-width: 200px;\">Driver</th>
+										<th style=\"max-width: 40px;\">Total Amount (LKR)</th>
+										<th style=\"max-width: 80px;\">Credit / Debit</th>
+										
+										
+
 									</thead>
 									<tbody>";
 						// output data of each row
 						while ($row = $result->fetch_assoc()) {
-							echo "<tr>
-									<td>" . $row["driver_id"] . "</td>
-									<td>" . $row["fname"] . " " . $row["lname"] . "</td>
-									<td>" . $row["contact_no"] . "</td>
-									
-									<td>" . $row["amount"] . ".00 &nbsp;&nbsp;<a class=\"pay-btn\" href=\"./php/driver_pay.php?driver_id=".$row["driver_id"]."\" style=\"border: 1px solid #000; padding: 1px 7px 1px 7px; border-radius: 5px; text-decoration: none; color: black; width: 50px; height: 20px;\">Collect</a></td>
-									<td>" . $row["amount"] . ".00 &nbsp;&nbsp;<a class=\"pay-btn\" href=\"./php/driver_pay.php?driver_id=".$row["driver_id"]."\" style=\"border: 1px solid #000; padding: 1px 7px 1px 7px; border-radius: 5px; text-decoration: none; color: black; width: 50px; height: 20px;\">Pay</a></td>
-									<td>" . $row["last_date"] . "</td>
-									<!--<td><a href=\"#\" class=\"delete\">Delete</a></td>-->
 
+							// payment - credit
+							
+
+							echo "<tr>
+								
+									<td>" . $row["date"] . "</td>
+									<td>" . $row["driver_id"] . "</td>
+									<td style=\"text-transform: capitalize;\">" . $row["fname"] . " " . $row["lname"] . "</td>
+									<td>" . $row["payment"] . ".00</td>
+									<td>" . $row["type"] . "</td>
 								</tr>";
 						}
 						echo "</tbody>
-						</table>
-						<br><br>
-						<i class=\"fa fa-history\"><a style=\"color: black;\" href=\"./driver-payments-history.php\"> &nbsp;Payments History</a></i>";
+						</table>";
 					} else {
-						echo "0 results
-						<br><br>
-						<i class=\"fa fa-history\"><a style=\"color: black;\" href=\"./driver-payments-history.php\"> &nbsp;Payments History</a></i>";
-						
+						echo "0 results";
 					}
 
 					?>
@@ -198,21 +198,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 				</div>
 
 
-				<form action="./php/add_driver.php" method="post" style="margin-top: 50px;">
-				<div class="details">
-					<h2 class="page-title">Add New Driver</h2>
-					<label class="driver_lbl">First Name<input required class="driver_in" type="text" name="fname"></label>
-					<label class="driver_lbl">Last Name<input required class="driver_in" type="text" name="lname"></label>
-					<label class="driver_lbl">Contact Number<input required class="driver_in" type="text" name="contact_no"></label>
-					<label class="driver_lbl">Email<input required class="driver_in" type="email" name="email"></label>
-					<label class="driver_lbl">Password<input required class="driver_in" type="password" name="pw"></label>
-					<label class="driver_lbl">Re-type Password<input required class="driver_in" type="password" name="veri"></label>
-
-					<button class="print-btn" type="submit">Add</button>
-				</div>
-			</form>
 		</div>
-		
 
 		<div class="main-content">
 			<header class="header">
