@@ -175,7 +175,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 
 							
 
-							echo "<tr>
+							echo "<tr> 
 									<td style=\"text-align: center;\">" . $row["order_id"] . "</td>
 									<td>" . $row["date"] . "</td>
 									<td style=\"text-transform: capitalize;\">" . $row["fname"] . " " . $row["lname"] . "</td>
@@ -183,7 +183,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 									<td>" . $row["type_name"] . "</td>
 									<td>" . $row["driver_id"] . "</td>
 									<td><a target=\"_blank\" href=\"./php/fpdf/invoice.php?order_id=" . $row["order_id"] . "\">Show</a></td>
-									<td><a href=\"./php/delivery_charge.php?driver_id=".$row["driver_id"]."&order_id=".$row["order_id"]."\" class=\"edit\">Delivered</a></td>
+									<td><a href=\"./php/delivery_charge.php?driver_id=".$row["driver_id"]."&order_id=".$row["order_id"]."&payment_type_id=" . $row["payment_type_id"] . "\" class=\"edit\">Delivered</a></td>
 								</tr>";
 						}
 						echo "</tbody>

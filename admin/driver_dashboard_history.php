@@ -18,31 +18,31 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 	<html>
 
 	<head>
-		<title>Delivery</title>
+		<title>Driver Payments - History</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
 		<link rel="stylesheet" href="../style/Admin.css">
 	</head>
 
 	<body>
-		<div class="sidenav">
+	<div class="sidenav">
 			<div class="sidenav-header">
 				<h3 class="brand">
 					<i class="fa fa-unlink"></i>
-					<span>Driver</span>
+					<span>Admin</span>
 				</h3>
 				<!--<span class="fa fa-bars"></span>-->
 			</div>
-			<div class="sidenav-menu">
+            <div class="sidenav-menu">
 				<ul>
 					<li>
-						<a class="nav-select" href="./drivers_dashboard.php">
+						<a class="nav-item" href="./drivers_dashboard.php">
 							<i class="fa fa-truck"></i>
 							<span>Deliveries</span>
 						</a>
 					</li>
-					<li>
-						<a class="nav-item" href="./driver_dashboard_history.php">
+                    <li>
+						<a class="nav-select" href="./driver_dashboard_history.php">
 							<i class="fa fa-money-bill"></i>
 							<span>Payments</span>
 						</a>
@@ -62,10 +62,32 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 				</ul>
 			</div>
 		</div>
+
+        <?php
+        $sql = "SELECT debit_balance, amount FROM driver_payments WHERE driver_id = '$driver_id' LIMIT 1";
+        $result = $conn->query($sql);
+        
+        if ($result->num_rows > 0) {
+          // output data of each row
+          while($row = $result->fetch_assoc()) {
+            $debit_balance = $row["debit_balance"];
+            $salary = $row["amount"];
+          }
+        } else {
+          echo "0 results";
+        }
+        ?>
+
 		<div class="admin-content">
 				<div class="content">
-				<h1>Deliveries<a onclick="window.print();" class="print">Print</a></h1>
-				<h3 class="print-name">Sethmith Enterprise</h3>
+                <h1>Summery</h1>
+                <h3 class="print-name">Sethmith Enterprise</h3>
+                <br>
+                <p style="width: 350px;"><span><b>Current Debit Balance: </b></span><span style="float: right;">LKR <?php echo $debit_balance; ?>.00</span></p>
+                <p style="width: 350px;"><b>Current Salary: </b><span style="float: right;">LKR <?php echo $salary; ?>.00</span></p>
+                <br><hr style="width: 65vw;"><br>
+				<h1>Payments - History<a onclick="window.print();" class="print">Print</a></h1>
+				
 				<br>
 					<style>
 						.tbl {
@@ -81,7 +103,7 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 					//$sql = "SELECT * FROM orders WHERE obtaining_method_id=1";
 					//$sql = "SELECT * FROM orders INNER JOIN customer ON orders.customer_id=customer.customer_id";
 
-					$sql = "SELECT * FROM (((orders INNER JOIN customer ON orders.customer_id = customer.customer_id) INNER JOIN payment_type ON orders.payment_type_id = payment_type.payment_type_id) INNER JOIN delivery ON delivery.order_id = orders.order_id) WHERE orders.obtaining_method_id=1 AND orders.status=1 AND delivery.driver_id='$driver_id' ORDER BY orders.order_id";
+					$sql = "SELECT * FROM (driver_payments_history INNER JOIN driver ON driver.driver_id = driver_payments_history.driver_id) WHERE driver_payments_history.driver_id = '$driver_id' ORDER BY driver_payments_history.id";
 
 					$result = $conn->query($sql);
 
@@ -89,30 +111,36 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 						echo "
 						<table class=\"tbl\">
 									<thead>
-										<th style=\"max-width: 40px;\">Order</th>
+										
 										<th style=\"max-width: 120px;\">Date</th>
-										<th style=\"max-width: 200px;\">Customer Name</th>
+										<th style=\"max-width: 80px;\">Driver ID</th>
+										<th style=\"max-width: 200px;\">Driver</th>
 										<th style=\"max-width: 40px;\">Total Amount (LKR)</th>
 										<th style=\"max-width: 80px;\">Payment Type</th>
-										<!--<th style=\"max-width: 80px;\">Driver ID</th>-->
-										<th style=\"max-width: 80px;\">Invoice</th>
-										<th style=\"max-width: 200px;\" colspan=\"3\">Action</th>
+										
+										
+
 									</thead>
 									<tbody>";
 						// output data of each row
 						while ($row = $result->fetch_assoc()) {
 
+							// payment - credit
+
+                            if ($row["type"] == "Credit") {
+                                $payment_type = "Debit Balance";
+                            } else {
+                                $payment_type = "Salary";
+                            }
 							
 
 							echo "<tr>
-									<td style=\"text-align: center;\">" . $row["order_id"] . "</td>
+								
 									<td>" . $row["date"] . "</td>
+									<td>" . $row["driver_id"] . "</td>
 									<td style=\"text-transform: capitalize;\">" . $row["fname"] . " " . $row["lname"] . "</td>
-									<td>" . $row["total_price"] . ".00</td>
-									<td>" . $row["type_name"] . "</td>
-									<!--<td>" . $row["driver_id"] . "</td>-->
-									<td><a target=\"_blank\" href=\"./php/fpdf/invoice_driver.php?order_id=" . $row["order_id"] . "\">Show</a></td>
-									<td><a href=\"./php/delivery_charge_driver.php?driver_id=".$row["driver_id"]."&order_id=".$row["order_id"] . "&payment_type_id=" . $row["payment_type_id"] . "\" class=\"edit\">Delivered</a></td>
+									<td>" . $row["payment"] . ".00</td>
+									<td>" . $payment_type . "</td>
 								</tr>";
 						}
 						echo "</tbody>
@@ -145,7 +173,7 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 							color: rgba(0, 0, 0, .6);
 						}
 					</style>
-					<a class="ad-top-btn" href="./drivers_dashboard.php"><span class="fa fa-user"><b> <?php echo $_SESSION["email"]; ?></b></span></a>
+					<a class="ad-top-btn" href="./"><span class="fa fa-user"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font></span></a>
 					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font></span></a>
 					<div></div>
 				</div>

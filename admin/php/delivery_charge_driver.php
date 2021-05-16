@@ -4,8 +4,50 @@
 include "../../php/connection.php";
 $driver_id = htmlentities($_GET["driver_id"]);
 $order_id = htmlentities($_GET["order_id"]);
+$payment_type = htmlentities($_GET["payment_type_id"]);
 
-echo $driver_id;
+//echo $driver_id;
+
+if ($payment_type == 2) {
+
+  // total value of the sale - cash on delivery
+  $sql = "SELECT total_price FROM orders WHERE order_id = '$order_id' LIMIT 1";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+      $total_price = $row["total_price"];
+    }
+  }
+
+  // old debit balance of the driver
+  $sql = "SELECT debit_balance FROM driver_payments WHERE driver_id = '$driver_id' LIMIT 1";
+  $result = $conn->query($sql);
+
+  if ($result->num_rows > 0) {
+    // output data of each row
+    while ($row = $result->fetch_assoc()) {
+      $old_debit_balance = $row["debit_balance"];
+    }
+  } else {
+    echo "<script>";
+    echo "  alert('No such driver exist!');";
+    echo "  window.location = '../delivery.php';";
+    echo "</script>";
+  }
+
+  // new debit balance
+  $new_debit_balance = $old_debit_balance + $total_price;
+
+  // update debit balance of the driver
+  $sql_4 = "UPDATE driver_payments SET debit_balance = '$new_debit_balance' WHERE driver_id='$driver_id'";
+  if ($conn->query($sql_4) === TRUE) {
+    $sql_4_veri == TRUE;
+  }
+} else {
+  $sql_4_veri == TRUE;
+}
 
 $sql = "SELECT amount FROM driver_payments WHERE driver_id = '$driver_id'";
 $result = $conn->query($sql);

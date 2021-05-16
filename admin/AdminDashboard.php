@@ -226,7 +226,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 																								} ?></span></div>
 					</div>
 					<div class="col-sm">
-						<div class="dash_items no-print">Drivers' Credit Balance<span class="dash-mini">LKR <?php echo $driver_balance; ?>.00</span></div>
+						<div class="dash_items no-print">Drivers' Total Salary<span class="dash-mini">LKR <?php echo $driver_balance; ?>.00</span></div>
 					</div>
 				</div>
 				<?php

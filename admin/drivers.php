@@ -145,7 +145,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 							font-size: 14px;
 							margin-left: 0px;
 							margin-top: 0px;
-							width: 60vw;
+							width: 70vw;
 						}
 					</style>
 					<?php
@@ -158,24 +158,44 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 						<table class=\"tbl\">
 									<thead>
 										<th>ID</th>
-										<th>Name</th>
+										<th style=\"max-width: 120px;\">Name</th>
 										<th>Contact No</th>
+										<th>NIC</th>
+
+										<th>Start</th>
+										<th>End</th>
+
+										
 										
 										<th>Debit Balance (LKR)</th>
-										<th>Sallery (LKR)</th>
+										<th>Salary (LKR)</th>
 										<th>Last Transaction</th>
 										<!--<th>Action</th>-->
 									</thead>
 									<tbody>";
 						// output data of each row
 						while ($row = $result->fetch_assoc()) {
+
+
 							echo "<tr>
 									<td>" . $row["driver_id"] . "</td>
-									<td>" . $row["fname"] . " " . $row["lname"] . "</td>
+									<td style=\"max-width: 120px;\">" . $row["fname"] . " " . $row["lname"] . "</td>
 									<td>" . $row["contact_no"] . "</td>
+									<td>" . $row["nic"] . "</td>
+
+									<td>" . $row["start"] . "</td>
+									<td>" . $row["end"] . "</td>
+
+
 									
-									<td>" . $row["amount"] . ".00 &nbsp;&nbsp;<a class=\"pay-btn\" href=\"./php/driver_pay.php?driver_id=".$row["driver_id"]."\" style=\"border: 1px solid #000; padding: 1px 7px 1px 7px; border-radius: 5px; text-decoration: none; color: black; width: 50px; height: 20px;\">Collect</a></td>
-									<td>" . $row["amount"] . ".00 &nbsp;&nbsp;<a class=\"pay-btn\" href=\"./php/driver_pay.php?driver_id=".$row["driver_id"]."\" style=\"border: 1px solid #000; padding: 1px 7px 1px 7px; border-radius: 5px; text-decoration: none; color: black; width: 50px; height: 20px;\">Pay</a></td>
+									<td>" . $row["debit_balance"] . ".00 "; if ($row["debit_balance"] != 0) { echo " &nbsp;&nbsp;
+									<a class=\"pay-btn debit-pay\" href=\"./php/driver_collect.php?driver_id=".$row["driver_id"]. "&debit_balance=" . $row["debit_balance"] ."\" style=\"border: 1px solid #000; padding: 1px 7px 1px 7px; border-radius: 5px; text-decoration: none; color: black; width: 50px; height: 20px;\">Collect</a> "; } echo "
+									</td>
+
+									<td>" . $row["amount"] . ".00"; if ($row["amount"] != 0) {echo" &nbsp;&nbsp;
+									<a class=\"pay-btn salary-pay\" href=\"./php/driver_pay.php?driver_id=".$row["driver_id"]."&amount=". $row["amount"] ."\" style=\"border: 1px solid #000; padding: 1px 7px 1px 7px; border-radius: 5px; text-decoration: none; color: black; width: 50px; height: 20px;\">Pay</a>";} echo "
+									</td>
+
 									<td>" . $row["last_date"] . "</td>
 									<!--<td><a href=\"#\" class=\"delete\">Delete</a></td>-->
 
@@ -203,8 +223,19 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 					<h2 class="page-title">Add New Driver</h2>
 					<label class="driver_lbl">First Name<input required class="driver_in" type="text" name="fname"></label>
 					<label class="driver_lbl">Last Name<input required class="driver_in" type="text" name="lname"></label>
-					<label class="driver_lbl">Contact Number<input required class="driver_in" type="text" name="contact_no"></label>
-					<label class="driver_lbl">Email<input required class="driver_in" type="email" name="email"></label>
+					<label class="driver_lbl">Contact Number<input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "text" maxlength = "10" required class="driver_in" name="contact_no"></label>
+					<label class="driver_lbl">NIC Number<input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type = "text" maxlength = "12" required class="driver_in" name="nic"></label>
+
+					<br>
+<fieldset style="border: 1px solid rgba(0,0,0,.18); border-left: none; border-right: none;">
+<legend>Available Time Slot &nbsp&nbsp&nbsp&nbsp</legend> 
+<br>
+					<label class="driver_lbl">Starting Time<input type = "time" required class="driver_in" name="start"></label>
+					<label class="driver_lbl">Ending Time<input type = "time" required class="driver_in" name="end"></label>
+					<br>
+</fieldset>
+<br><br>
+					<label class="driver_lbl">Email<input class="driver_in" type="email" name="email"></label>
 					<label class="driver_lbl">Password<input required class="driver_in" type="password" name="pw"></label>
 					<label class="driver_lbl">Re-type Password<input required class="driver_in" type="password" name="veri"></label>
 

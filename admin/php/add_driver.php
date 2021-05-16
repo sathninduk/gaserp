@@ -26,6 +26,9 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
     $fname          = $_POST["fname"];
     $lname          = $_POST["lname"];
     $contact_no     = $_POST["contact_no"];
+    $nic            = $_POST["nic"];
+    $start          = $_POST["start"];
+    $end            = $_POST["end"];
     $email          = $_POST["email"];
     $pw             = $_POST["pw"];
     $veri           = $_POST["veri"];
@@ -39,7 +42,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 
         $pw_hash = sha1($pw);
 
-        $sql_1 = "INSERT INTO driver (driver_id, fname, lname, contact_no, email, status) VALUES ('$driver_id', '$fname', '$lname', '$contact_no', '$email', 1)";
+        $sql_1 = "INSERT INTO driver (driver_id, fname, lname, contact_no, nic, start, end, email, status) VALUES ('$driver_id', '$fname', '$lname',  '$contact_no', '$nic', '$start', '$end', '$email', 1)";
 
         $sql_2 = "INSERT INTO driver_payments (driver_id, amount, status) VALUES ('$driver_id', 0, 1)";
 
