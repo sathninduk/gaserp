@@ -66,6 +66,26 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	date_default_timezone_set('Asia/Colombo');
 	$time = date("H:i:s");
 
+
+
+		//get row count - drivers
+		$sql_get_101 = "SELECT * FROM driver WHERE status = 1 AND start < '$time' AND end > '$time'";
+		$result = $conn->query($sql_get_101);
+		if ($result->num_rows > 0) {
+			$drivers_have = TRUE;
+		} else {
+			$drivers_have = FALSE;
+		}
+
+
+	if ($obtaining_method_id==1 && $drivers_have == FALSE) {
+		echo "<script>";
+		echo "  alert('Delivery Unavailable!');";
+		echo "  window.location = './Home2.php';";
+		echo "</script>";
+		exit;
+	}
+
 	$sql_stock_1 = "SELECT availability, price FROM products WHERE product_id=1";
 	$result = $conn->query($sql_stock_1);
 	if ($result->num_rows > 0) {

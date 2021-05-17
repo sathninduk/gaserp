@@ -33,7 +33,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 	if ($result->num_rows > 0) {
 		//get row count - drivers
-		$sql_get_101 = "SELECT * FROM driver WHERE status = 1 AND start < '$time' AND end > '$time'"; // WHERE START AND END
+		$sql_get_101 = "SELECT * FROM driver WHERE status = 1 AND start < '$time' AND end > '$time'";
 		$result = $conn->query($sql_get_101);
 		if ($result->num_rows > 0) {
 			$drivers_have = TRUE;
@@ -70,11 +70,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				height: 60px;
 				position: fixed;
 				top: 0px;
-				background-color: rgba(255, 255, 255, .2);
-				backdrop-filter: blur(20px);
+				background-color: #ffffff;
+				/*backdrop-filter: blur(20px);
 				-ms-backdrop-filter: blur(20px);
 				-webkit-backdrop-filter: blur(20px);
-				-moz-backdrop-filter: blur(20px);
+				-moz-backdrop-filter: blur(20px);*/
 			}
 		</style>
 
@@ -87,7 +87,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				<li></li>
 
 			</div>-->
-			<div class="form-box" style="height: 100vh;">
+			<div class="form-box" style="height: 800px;">
 				<h3>Select the Shopping Method</h3>
 				<div class="button-box">
 					<div id="btn"></div>
@@ -109,6 +109,9 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 						<input type="text" class="input-field" name="no" placeholder="Enter No" required>
 						<input type="text" class="input-field" name="street1" placeholder="Enter Street 1" required>
 						<input type="text" class="input-field" name="street2" placeholder="Enter Street 2">
+						<br><br>
+						<span style="font-size: 14px;">*Only customers in the below mentioned areas are eligible for the delivery option.</span>
+						<br>
 						<select type="text" class="input-field" name="city" required>
 							<option value="">Enter City</option>
 							<option value="Kiribathgoda">Kiribathgoda</option>
@@ -123,8 +126,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 						<br />
 						<br />
 						<button type="submit" class="submit-btn">Buy Now</button>
-						<br><br>
-						<span style="font-size: 14px;">*Only customers in the above mentioned areas are eligible for the delivery option.</span>
+						
 					<?php } else {
 						echo "<p class=\"delivery-info-home2\"><b>Currently unavailable</b></p>";
 					} ?>

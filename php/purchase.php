@@ -92,7 +92,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         }
 
 
-
+        $sql_get_3_helper = "";
         //get last id - driver
         $sql_get_1 = "SELECT driver_id FROM delivery WHERE driver_id IN (";
 
