@@ -24,19 +24,24 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 	$today = date("Y-m-d");
 
+	// time
+	date_default_timezone_set('Asia/Colombo');
+	$time = date("H:i:s");
+
 	$sql = "SELECT * FROM driver WHERE status=1";
 	$result = $conn->query($sql);
 
 	if ($result->num_rows > 0) {
-		$drivers_have = true;
+		//get row count - drivers
+		$sql_get_101 = "SELECT * FROM driver WHERE status = 1 AND start < '$time' AND end > '$time'"; // WHERE START AND END
+		$result = $conn->query($sql_get_101);
+		if ($result->num_rows > 0) {
+			$drivers_have = TRUE;
+		} else {
+			$drivers_have = FALSE;
+		}
 	} else {
-		$drivers_have = false;
-/*
-		echo "<script>";
-        echo "  alert('The delivery option is currently unavailable!');";
-        echo "</script>";
-*/
-
+		$drivers_have = FALSE;
 	}
 ?>
 
@@ -86,16 +91,16 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				<h3>Select the Shopping Method</h3>
 				<div class="button-box">
 					<div id="btn"></div>
-				
-						<button type="button" class="toggle-btn" onclick="delivery()">Delivery</button>
-		
+
+					<button type="button" class="toggle-btn" onclick="delivery()">Delivery</button>
+
 					<button type="button" class="toggle-btn" onclick="pickup()">Pickup</button>
 				</div>
-				
-					<form id="delivery" class="input-group" method="GET" action="./cart.php">
+
+				<form id="delivery" class="input-group" method="GET" action="./cart.php">
 					<?php
-				if ($drivers_have == true) {
-				?>
+					if ($drivers_have == true) {
+					?>
 						<p class="delivery-info-home2"><b>Your Name:</b> <?php echo $fname . " " . $lname; ?></p>
 						<p class="delivery-info-home2"><b>Your Contact Number:</b> <?php echo $contact_no; ?></p>
 						<p class="delivery-info-home2"><b>Your NIC Number:</b> <?php echo $nic; ?></p>
@@ -120,11 +125,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 						<button type="submit" class="submit-btn">Buy Now</button>
 						<br><br>
 						<span style="font-size: 14px;">*Only customers in the above mentioned areas are eligible for the delivery option.</span>
-						<?php } else {
-							echo "<p class=\"delivery-info-home2\"><b>Currently unavailable</b></p>";
-						} ?>
-					</form>
-			
+					<?php } else {
+						echo "<p class=\"delivery-info-home2\"><b>Currently unavailable</b></p>";
+					} ?>
+				</form>
+
 				<form id="pickup" action="./cart.php" method="GET" class="input-group">
 					<p class="delivery-info-home2"><b>Your Name:</b> <?php echo $fname . " " . $lname; ?></p>
 					<p class="delivery-info-home2"><b>Your Contact Number:</b> <?php echo $contact_no; ?></p>

@@ -11,11 +11,21 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	$no = $street1 = $street2 = $city = $description = "";
 
 	if ($_SERVER["REQUEST_METHOD"] == "GET") {
-		if (isset($_GET["no"])) {$no = htmlentities($_GET["no"]);}
-		if (isset($_GET["street1"])) {$street1 = htmlentities($_GET["street1"]);}
-		if (isset($_GET["street2"])) {$street2 = htmlentities($_GET["street2"]);}
-		if (isset($_GET["city"])) {$city = htmlentities($_GET["city"]);}
-		if (isset($_GET["description"])) {$description = htmlentities($_GET["description"]);}
+		if (isset($_GET["no"])) {
+			$no = htmlentities($_GET["no"]);
+		}
+		if (isset($_GET["street1"])) {
+			$street1 = htmlentities($_GET["street1"]);
+		}
+		if (isset($_GET["street2"])) {
+			$street2 = htmlentities($_GET["street2"]);
+		}
+		if (isset($_GET["city"])) {
+			$city = htmlentities($_GET["city"]);
+		}
+		if (isset($_GET["description"])) {
+			$description = htmlentities($_GET["description"]);
+		}
 	}
 
 	$no = str_replace("'", "\'", $no);
@@ -51,6 +61,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 	include "./php/connection.php";
 
 	$today = date("Y-m-d");
+
+	// time
+	date_default_timezone_set('Asia/Colombo');
+	$time = date("H:i:s");
 
 	$sql_stock_1 = "SELECT availability, price FROM products WHERE product_id=1";
 	$result = $conn->query($sql_stock_1);
@@ -292,7 +306,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="container content-section cart-section">
 			<h2 class="section-header">NEW CYLINDERS</h2>
 			<div class="cart-items">
@@ -325,7 +339,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="container content-section cart-section">
 			<h2 class="section-header">ACCESSORIES</h2>
 			<div class="cart-items">
@@ -358,7 +372,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				</div>
 			</div>
 		</section>
-		
+
 		<section class="container content-section">
 			<form action="./php/purchase.php" method="POST">
 				<h2 class="section-header">CART</h2>

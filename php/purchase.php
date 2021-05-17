@@ -12,6 +12,14 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     $year = date("Y");
 
+    // date
+    $date = date("Y-m-d");
+
+    // time
+    date_default_timezone_set('Asia/Colombo');
+    $time = date("H:i:s");
+
+
     $customer_id            = $_SESSION["customer_id"];
     $fname                  = $_SESSION["fname"];
     $lname                  = $_SESSION["lname"];
@@ -39,40 +47,110 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     $obtaining_method_id    = $_POST["obtaining_method_id"];
     if ($obtaining_method_id == 1) {
 
+
+
+
+
+
+
         //get row count - drivers
-        $sql_get_101 = "SELECT * FROM driver";
+        $sql_get_101 = "SELECT * FROM driver WHERE status = 1 AND start < '$time' AND end > '$time'";
         $result = $conn->query($sql_get_101);
         if ($result->num_rows > 0) {
+
+
+            $driverArray = array();
+            $index = 0;
+
+
             while ($row = $result->fetch_assoc()) {
                 $driver_rowcount = mysqli_num_rows($result);
                 //mysqli_free_result($result);
+                $delivery_available = TRUE;
+
+                //echo $row["driver_id"]."<br>";
+
+
+                $driverArray[$index] = $row["driver_id"];
+                $index++;
+            }
+
+            if ($delivery_available == TRUE) {
+                //echo "<br>" . $driver_rowcount;
             }
         } else {
-            $delivery_id = 1;
-            $driver = 1;
+            //echo "";
+           // header ("Location: ../Home2.php");
+            
+
+            echo "<script>";
+            echo "  alert('Delivery Unavailable!');";
+            echo "  window.location = '../Home2.php';";
+            echo "</script>";
+            exit;
+            $delivery_available = FALSE;
         }
 
+
+
+        //get last id - driver
+        $sql_get_1 = "SELECT driver_id FROM delivery WHERE driver_id IN (";
+
+        foreach ($driverArray as $value) {
+            if ($value == $driverArray[$driver_rowcount - 1]) {
+                $sql_get_3_helper .= $value;
+            } else {
+                $sql_get_3_helper = $value . ", ";
+            }
+            $sql_get_3 = $sql_get_3_helper;
+        }
+
+        $sql_get_2 = ") ORDER BY delivery_id DESC LIMIT 1";
+
+        $result = $conn->query($sql_get_1 . $sql_get_3 . $sql_get_2);
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                //echo $row["driver_id"];
+                $last_driver = $row["driver_id"];
+            }
+        } else {
+            echo "Error";
+        }
+
+        $array_max = count($driverArray) - 1;
+
+        // new driver assign
+        $driver_position = array_search($last_driver, $driverArray);
+        if ($driver_position == $array_max) {
+            $next_driver = $driverArray[0];
+        } else {
+            $next_driver = $driverArray[$driver_position + 1];
+        }
+
+        $driver = $next_driver;
+
+
+
         //get last id - delivery
-        $sql_get_1 = "SELECT delivery_id, driver_id FROM delivery ORDER BY delivery_id DESC LIMIT 1";
+        $sql_get_1 = "SELECT delivery_id FROM delivery ORDER BY delivery_id DESC LIMIT 1";
         $result = $conn->query($sql_get_1);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $delivery_id = $row["delivery_id"] + 1;
-                $past_driver = $row["driver_id"];
-
-                if ($past_driver == $driver_rowcount) {
-                    $driver = 1;
-                } elseif ($past_driver < $driver_rowcount) {
-                    $driver = $past_driver + 1;
-                } else {
-                    echo "Complex Error! - 700";
-                }
             }
         } else {
             $delivery_id = 1;
-            $driver = 1;
         }
+    
+
     }
+    
+
+
+
+
+
+
 
     if (isset($_POST["payment_method"])) {
         $payment_method    = $_POST["payment_method"];
@@ -224,8 +302,6 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
 
-    //date
-    $date = date("Y-m-d");
 
 
 
@@ -396,7 +472,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     //insert delivery db
     if ($obtaining_method_id == 1) {
-        $sql_11 = "INSERT INTO delivery (delivery_id, driver_id, no, street1, street2, city, description, date, delivery_charge, status, order_id) VALUES ('$delivery_id', '$driver', '$no', '$street1', '$street2', '$city', '$description', '$date', 100, 1, '$order_id')";
+        $sql_11 = "INSERT INTO delivery (delivery_id, driver_id, no, street1, street2, city, description, date, time, delivery_charge, status, order_id) VALUES ('$delivery_id', '$driver', '$no', '$street1', '$street2', '$city', '$description', '$date', '$time', 100, 1, '$order_id')";
     }
 
 
@@ -439,7 +515,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     // db - orders insert section
     if (isset($pid_1) || isset($pid_2) || isset($pid_3) || isset($pid_4) || isset($pid_5) || isset($pid_6) || isset($pid_7) || isset($pid_8) || isset($pid_9)) {
-        $sql_10 = "INSERT INTO orders (order_id, date, total_price, status, obtaining_method_id, customer_id, payment_type_id) VALUES ('$order_id', '$date', '$total_price', 1, '$obtaining_method_id', '$customer_id', '$payment_method')";
+        $sql_10 = "INSERT INTO orders (order_id, date, time, total_price, status, obtaining_method_id, customer_id, payment_type_id) VALUES ('$order_id', '$date', '$time', '$total_price', 1, '$obtaining_method_id', '$customer_id', '$payment_method')";
     }
 
     // db - order_has_products insert section
