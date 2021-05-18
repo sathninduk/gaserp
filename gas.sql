@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 29, 2021 at 10:41 AM
+-- Generation Time: May 18, 2021 at 08:47 AM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -61,6 +61,7 @@ CREATE TABLE `delivery` (
   `city` text CHARACTER SET utf8 NOT NULL,
   `description` text CHARACTER SET utf8 NOT NULL,
   `date` date NOT NULL,
+  `time` time NOT NULL,
   `delivery_charge` double NOT NULL,
   `status` tinyint(1) NOT NULL,
   `order_id` int(11) NOT NULL
@@ -77,7 +78,10 @@ CREATE TABLE `driver` (
   `fname` varchar(45) CHARACTER SET utf8 NOT NULL,
   `lname` varchar(45) CHARACTER SET utf8 NOT NULL,
   `contact_no` varchar(45) CHARACTER SET utf8 NOT NULL,
-  `email` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `nic` varchar(12) NOT NULL,
+  `start` time NOT NULL,
+  `end` time NOT NULL,
+  `email` varchar(200) CHARACTER SET utf8 DEFAULT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -91,8 +95,23 @@ CREATE TABLE `driver_payments` (
   `driver_payments_id` int(11) NOT NULL,
   `driver_id` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
+  `debit_balance` int(11) NOT NULL DEFAULT '0',
   `last_date` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `driver_payments_history`
+--
+
+CREATE TABLE `driver_payments_history` (
+  `id` int(11) NOT NULL,
+  `driver_id` int(11) NOT NULL,
+  `payment` int(11) NOT NULL,
+  `type` text NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -138,6 +157,7 @@ INSERT INTO `obtaining_method` (`obtaining_method_id`, `method_type`, `status`) 
 CREATE TABLE `orders` (
   `order_id` int(11) NOT NULL,
   `date` date NOT NULL,
+  `time` time NOT NULL,
   `total_price` double NOT NULL,
   `status` tinyint(1) NOT NULL,
   `obtaining_method_id` int(11) NOT NULL,
@@ -201,15 +221,15 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`product_id`, `name`, `price`, `availability`, `type`, `status`) VALUES
-(1, '12.5 Kg Cylinders', 1493, 22, 'REFILLING CYLINDERS', 1),
-(2, '5.0 Kg Cylinders', 598, 24, 'REFILLING CYLINDERS', 1),
-(3, '2.3 Kg Cylinders', 289, 35, 'REFILLING CYLINDERS', 1),
-(4, '12.5 Kg Cylinders', 4245, 29, 'NEW CYLINDERS', 1),
-(5, '5.0 Kg Cylinders', 3155, 19, 'NEW CYLINDERS', 1),
-(6, '2.3 Kg Cylinders', 2765, 20, 'NEW CYLINDERS', 1),
-(7, 'Regulator', 880, 12, 'ACCESSORIES', 1),
-(8, 'Hose', 470, 23, 'ACCESSORIES', 1),
-(9, 'Accessory Pack', 1340, 3, 'ACCESSORIES', 1);
+(1, '12.5 Kg Cylinders', 1493, 20, 'REFILLING CYLINDERS', 1),
+(2, '5.0 Kg Cylinders', 598, 22, 'REFILLING CYLINDERS', 1),
+(3, '2.3 Kg Cylinders', 289, 13, 'REFILLING CYLINDERS', 1),
+(4, '12.5 Kg Cylinders', 4245, 53, 'NEW CYLINDERS', 1),
+(5, '5.0 Kg Cylinders', 3155, 9, 'NEW CYLINDERS', 1),
+(6, '2.3 Kg Cylinders', 2765, 14, 'NEW CYLINDERS', 1),
+(7, 'Regulator', 880, 17, 'ACCESSORIES', 1),
+(8, 'Hose', 470, 10, 'ACCESSORIES', 1),
+(9, 'Accessory Pack', 1340, 8, 'ACCESSORIES', 1);
 
 -- --------------------------------------------------------
 
@@ -261,6 +281,19 @@ CREATE TABLE `supplier_payments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `supplier_payments_history`
+--
+
+CREATE TABLE `supplier_payments_history` (
+  `id` int(11) NOT NULL,
+  `supplier_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `supply_orders`
 --
 
@@ -270,6 +303,7 @@ CREATE TABLE `supply_orders` (
   `unit_price` double NOT NULL,
   `quantity` int(11) NOT NULL,
   `date` date NOT NULL,
+  `rec_date` date DEFAULT NULL,
   `status` tinyint(1) NOT NULL,
   `supplier_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -339,6 +373,12 @@ ALTER TABLE `driver_payments`
   ADD KEY `driver_id` (`driver_id`);
 
 --
+-- Indexes for table `driver_payments_history`
+--
+ALTER TABLE `driver_payments_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `feedback`
 --
 ALTER TABLE `feedback`
@@ -406,6 +446,12 @@ ALTER TABLE `supplier_payments`
   ADD PRIMARY KEY (`sup_payment_id`);
 
 --
+-- Indexes for table `supplier_payments_history`
+--
+ALTER TABLE `supplier_payments_history`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `supply_orders`
 --
 ALTER TABLE `supply_orders`
@@ -427,7 +473,13 @@ ALTER TABLE `system_users`
 -- AUTO_INCREMENT for table `driver_payments`
 --
 ALTER TABLE `driver_payments`
-  MODIFY `driver_payments_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `driver_payments_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `driver_payments_history`
+--
+ALTER TABLE `driver_payments_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -439,10 +491,16 @@ ALTER TABLE `feedback`
 -- AUTO_INCREMENT for table `order_has_products`
 --
 ALTER TABLE `order_has_products`
-  MODIFY `number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `number` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `supplier_payments`
 --
 ALTER TABLE `supplier_payments`
-  MODIFY `sup_payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sup_payment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `supplier_payments_history`
+--
+ALTER TABLE `supplier_payments_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
