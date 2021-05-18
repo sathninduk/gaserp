@@ -208,7 +208,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 					<label class="driver_lbl">First Name<input required class="driver_in" type="text" name="fname"></label>
 					<label class="driver_lbl">Last Name<input required class="driver_in" type="text" name="lname"></label>
 					<label class="driver_lbl">Company<input class="driver_in" type="text" name="company_name"></label>
-					<label class="driver_lbl">Contact Number<input required class="driver_in" type="text" name="contact_no"></label>
+					<label class="driver_lbl">Contact Number<input oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="text" maxlength="10" required class="driver_in" name="contact_no"></label>
 					<label class="driver_lbl">Email<input required class="driver_in" type="email" name="email"></label>
 
 					<button class="print-btn" type="submit">Add</button>

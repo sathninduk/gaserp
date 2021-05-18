@@ -51,7 +51,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
 
-
+        $delivery_available = "";
 
         //get row count - drivers
         $sql_get_101 = "SELECT * FROM driver WHERE status = 1 AND start < '$time' AND end > '$time'";
@@ -68,7 +68,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 //mysqli_free_result($result);
                 $delivery_available = TRUE;
 
-                //echo $row["driver_id"]."<br>";
+               
 
 
                 $driverArray[$index] = $row["driver_id"];
@@ -76,11 +76,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             }
 
             if ($delivery_available == TRUE) {
-                //echo "<br>" . $driver_rowcount;
+              
             }
         } else {
-            //echo "";
-           // header ("Location: ../Home2.php");
+           
             
 
             echo "<script>";
@@ -93,6 +92,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
         $sql_get_3_helper = "";
+        $last_driver = "";
+
         //get last id - driver
         $sql_get_1 = "SELECT driver_id FROM delivery WHERE driver_id IN (";
 
@@ -110,7 +111,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         $result = $conn->query($sql_get_1 . $sql_get_3 . $sql_get_2);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                //echo $row["driver_id"];
+               
                 $last_driver = $row["driver_id"];
             }
         } else {

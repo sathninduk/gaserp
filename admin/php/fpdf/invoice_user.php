@@ -86,25 +86,27 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
   $pdf = new FPDF();
   $pdf->AddPage();
 
-  $pdf->SetFont('Arial', 'B', 32);
-  $pdf->Cell(60, 10, 'INVOICE', 0, 1, 'C');
+  $pdf->SetFont('Arial', 'B', 24);
+  $pdf->Cell(60, 10, 'SETHMITH ENTERPRISES', 0, 1, 'L');
+
+  $pdf->SetFont('Arial', '', 12);
+  
+  $pdf->Cell(60, 6, 'No 283, Sri Sudarshanarama rd, Kiribathgoda', 0, 1, 'L');
 
 
+  $pdf->SetFont('Arial', '', 12);
+  $pdf->Cell(60, 6, '0112915527 / 0717627641', 0, 0, 'L');
+  $pdf->Cell(67, 6, '', 0, 0, 'L');
   $pdf->SetFont('Arial', 'B', 12);
+  $pdf->Cell(40, 6, 'Invoice Number: ', 0, 0, 'L');
+  $pdf->Cell(30, 6, $order_id . '     ', 0, 1, 'R');
 
-  $pdf->Cell(38, 10, '', 0, 0, 'L');
-  $pdf->Cell(38, 10, '', 0, 0, 'L');
-  $pdf->Cell(38, 10, '', 0, 0, 'L');
-  $pdf->Cell(38, 10, 'Invoice Number: ', 0, 0, 'L');
-  $pdf->Cell(38, 10, $order_id . '     ', 0, 1, 'R');
-
-  $pdf->Cell(38, 10, '', 0, 0, 'L');
-  $pdf->Cell(38, 10, '', 0, 0, 'L');
-  $pdf->Cell(38, 10, '', 0, 0, 'L');
-  //$pdf->SetFillColor(74,74,74);
-  //$pdf->SetTextColor(255,255,255);
-  $pdf->Cell(38, 10, 'Invoice Date: ', 0, 0, 'L');
-  $pdf->Cell(38, 10, $date . '     ', 0, 1, 'R');
+  $pdf->SetFont('Arial', '', 12);
+  $pdf->Cell(60, 6, 'sethmithenterprise@gmail.com', 0, 0, 'L');
+  $pdf->Cell(67, 6, '', 0, 0, 'L');
+  $pdf->SetFont('Arial', 'B', 12);
+  $pdf->Cell(40, 6, 'Invoice Date: ', 0, 0, 'L');
+  $pdf->Cell(30, 6, $date . '     ', 0, 1, 'R');
 
   $pdf->Ln(5);
   $pdf->Cell(190, 0.1, '', 1, 1, 'C');
@@ -216,17 +218,16 @@ INNER JOIN products ON order_has_products.product_id = products.product_id WHERE
   $pdf->SetFont('Arial', '', 10);
 
   $pdf->Ln(11);
-  $pdf->SetFont('Arial', 'I', 6);
-  $pdf->Cell(190, 3, '*This is a system generated invoice', 0, 1, 'L');
-  $pdf->Ln(3);
+
   $pdf->Cell(190, 0.1, '', 1, 1, 'C');
   $pdf->Ln(3);
-
-  $pdf->SetFont('Arial', 'B', 7);
+  $pdf->SetFont('Arial', 'I', 6);
+  $pdf->Cell(190, 3, '*This is a system generated invoice', 0, 1, 'L');
+  /*$pdf->SetFont('Arial', 'B', 7);
   $pdf->Cell(190, 3, 'SETHMITH ENTERPRICE', 0, 1, 'C');
   $pdf->SetFont('Arial', '', 7);
-  $pdf->Cell(190, 3, 'TEL: 071 123 4567 | WEB: WWW.SETHMITH.LK', 0, 1, 'C');
-  $pdf->Ln(5);
+  $pdf->Cell(190, 3, 'TEL: 071 123 4567 | WEB: WWW.SETHMITH.LK', 0, 1, 'C');*/
+  //$pdf->Ln(5);
 
 
   $pdf->Output();

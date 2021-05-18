@@ -12,6 +12,7 @@ date_default_timezone_set('Asia/Colombo');
 $time = date("H:i:s");
 // date
 $date = date("Y-m-d");
+$today = $date;
 
 // Check connection
 if ($conn->connect_error) {
