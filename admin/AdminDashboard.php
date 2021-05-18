@@ -62,94 +62,94 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 							<span>Dashboard</span>
 						</a>
 					</li>
-<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) {?>
-					<li>
-						<a href="./customers.php" class="nav-item">
-							<i class="fa fa-users"></i>
-							<span>Customers</span>
-						</a>
-					</li>
-<?php } ?>
-
-<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) {?>
-					<div class="dropdown">
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) { ?>
 						<li>
-							<a class="nav-item">
-								<i class="fa fa-list"></i>
-								<span>Orders<i class="fa fa-caret-down"></i></span>
+							<a href="./customers.php" class="nav-item">
+								<i class="fa fa-users"></i>
+								<span>Customers</span>
 							</a>
 						</li>
-						<div class="dropdown-content">
-							<a class="nav-item" href="./delivery.php">Delivery</a>
-							<?php if ($permission != 5) { ?>
-							<a class="nav-item" href="./pickup.php">Pickup</a>
-							<?php } ?>
-						</div>
-					</div>
-<?php } ?>
+					<?php } ?>
 
-<?php if ($permission == 1 || $permission == 5) {?>
-					<li>
-						<a class="nav-item" href="./drivers.php">
-							<i class="fa fa-truck"></i>
-							<span>Drivers</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4) {?>
-<li>
-						<a class="nav-item" href="./suppliers.php">
-							<i class="fa fa-link"></i>
-							<span>Suppliers</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4) {?>
-					<li>
-						<a class="nav-item" href="./supplier-orders.php">
-							<i class="fa fa-parachute-box"></i>
-							<span>Supply Orders</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4 || $permission == 5) {?>
-					<li>
-						<a class="nav-item" href="./stock.php">
-							<i class="fa fa-cubes"></i>
-							<span>Stock</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 3 || $permission == 4) {?>
-					<li>
-						<a class="nav-item" href="./sales.php">
-							<i class="fa fa-bar-chart"></i>
-							<span>Sales</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1) {?>
-					<li>
-						<a class="nav-item" href="./feedback.php">
-							<i class="fa fa-comment"></i>
-							<span>Feedback</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1) {?>
-					<div class="dropdown">
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) { ?>
+						<div class="dropdown">
+							<li>
+								<a class="nav-item">
+									<i class="fa fa-list"></i>
+									<span>Orders<i class="fa fa-caret-down"></i></span>
+								</a>
+							</li>
+							<div class="dropdown-content">
+								<a class="nav-item" href="./delivery.php">Delivery</a>
+								<?php if ($permission != 5) { ?>
+									<a class="nav-item" href="./pickup.php">Pickup</a>
+								<?php } ?>
+							</div>
+						</div>
+					<?php } ?>
+
+					<?php if ($permission == 1 || $permission == 5) { ?>
 						<li>
-							<a class="nav-item">
-								<i class="fa fa-user-circle"></i>
-								<span>Account<i class="fa fa-caret-down"></i></span>
+							<a class="nav-item" href="./drivers.php">
+								<i class="fa fa-truck"></i>
+								<span>Drivers</span>
 							</a>
 						</li>
-						<div class="dropdown-content">
-							<a class="nav-item" href="./change-pw.php">Change Password</a>
-							<a class="nav-item" href="./php/logout.php">Logout</a>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4) { ?>
+						<li>
+							<a class="nav-item" href="./suppliers.php">
+								<i class="fa fa-link"></i>
+								<span>Suppliers</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4) { ?>
+						<li>
+							<a class="nav-item" href="./supplier-orders.php">
+								<i class="fa fa-parachute-box"></i>
+								<span>Supply Orders</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4 || $permission == 5) { ?>
+						<li>
+							<a class="nav-item" href="./stock.php">
+								<i class="fa fa-cubes"></i>
+								<span>Stock</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4) { ?>
+						<li>
+							<a class="nav-item" href="./sales.php">
+								<i class="fa fa-bar-chart"></i>
+								<span>Sales</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1) { ?>
+						<li>
+							<a class="nav-item" href="./feedback.php">
+								<i class="fa fa-comment"></i>
+								<span>Feedback</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1) { ?>
+						<div class="dropdown">
+							<li>
+								<a class="nav-item">
+									<i class="fa fa-user-circle"></i>
+									<span>Account<i class="fa fa-caret-down"></i></span>
+								</a>
+							</li>
+							<div class="dropdown-content">
+								<a class="nav-item" href="./change-pw.php">Change Password</a>
+								<a class="nav-item" href="./php/logout.php">Logout</a>
+							</div>
 						</div>
-					</div>
-<?php } ?>
+					<?php } ?>
 
 				</ul>
 			</div>
@@ -187,43 +187,43 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 				<div class="row">
 					<div class="col-sm">
 						<div class="dash_items no-print">Customers<span class="dash-mini"><?php if ($customer_count != 0) {
-																						echo $customer_count;
-																					}
-																					if ($customer_count == 1) {
-																						echo " customer";
-																					} elseif ($customer_count == 0) {
-																						echo "No customers";
-																					} else {
-																						echo " customers";
-																					} ?></span>
+																								echo $customer_count;
+																							}
+																							if ($customer_count == 1) {
+																								echo " customer";
+																							} elseif ($customer_count == 0) {
+																								echo "No customers";
+																							} else {
+																								echo " customers";
+																							} ?></span>
 						</div>
 					</div>
 					<div class="col-sm">
 						<div class="dash_items no-print">Pending Delivery Orders<span class="dash-mini"><?php if ($delivery_count != 0) {
-																									echo $delivery_count;
-																								}
-																								if ($delivery_count == 1) {
-																									echo " order";
-																								} elseif ($delivery_count == 0) {
-																									echo "No orders";
-																								} else {
-																									echo " orders";
-																								} ?></span>
+																											echo $delivery_count;
+																										}
+																										if ($delivery_count == 1) {
+																											echo " order";
+																										} elseif ($delivery_count == 0) {
+																											echo "No orders";
+																										} else {
+																											echo " orders";
+																										} ?></span>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm">
 						<div class="dash_items no-print">Pending Pickup Orders<span class="dash-mini"><?php if ($pick_count != 0) {
-																									echo $pick_count;
-																								}
-																								if ($pick_count == 1) {
-																									echo " order";
-																								} elseif ($pick_count == 0) {
-																									echo "No orders";
-																								} else {
-																									echo " orders";
-																								} ?></span></div>
+																											echo $pick_count;
+																										}
+																										if ($pick_count == 1) {
+																											echo " order";
+																										} elseif ($pick_count == 0) {
+																											echo "No orders";
+																										} else {
+																											echo " orders";
+																										} ?></span></div>
 					</div>
 					<div class="col-sm">
 						<div class="dash_items no-print">Drivers' Total Salary<span class="dash-mini">LKR <?php echo $driver_balance; ?>.00</span></div>
@@ -294,11 +294,22 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 					}
 				}
 				?>
+
+
+
 				<div class="row">
+
 					<div class="col-sm yes-print">
 						<div class="dash_items" style="width: 665px; height: 100%;">
-						
-							<p style="font-weight: 500; display: inline;"><span class="print-name">Sethmith Enterprise</span>Stock</p>
+							<div class="ltr-head print-name">
+								<img class="con-mid" style="float: left; text-align: left;" src="../images/ltr-logo.jpg">
+								<h1>SETHMITH ENTERPRISES</h1>
+								<br>
+								<h4>No 283, Sri Sudarshanarama rd, Kiribathgoda</h4>
+								<h4>0112915527/0717627641</h4>
+								<h4><?php echo $today . " &nbsp;&nbsp;&nbsp;" . $time ?></h4>
+							</div>
+							<p style="font-weight: 500; display: inline;">Stock</p>
 
 							<a onclick="window.print();" style="display: inline; float: right;" class="print no-print">Print</a>
 							<canvas id="stock" width="400" height="200"></canvas>
@@ -324,8 +335,12 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 									color: rgba(0, 0, 0, .6);
 								}
 							</style>
-							<a class="ad-top-btn" href="./"><span class="fa fa-user"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font></span></a>
-							<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font></span></a>
+							<a class="ad-top-btn" href="./"><span class="fa fa-user">
+									<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font>
+								</span></a>
+							<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt">
+									<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font>
+								</span></a>
 							<div></div>
 						</div>
 					</header>

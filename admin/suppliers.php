@@ -25,7 +25,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 	</head>
 
 	<body>
-	<div class="sidenav">
+		<div class="sidenav">
 			<div class="sidenav-header">
 				<h3 class="brand">
 					<i class="fa fa-unlink"></i>
@@ -41,120 +41,127 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 							<span>Dashboard</span>
 						</a>
 					</li>
-<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) {?>
-					<li>
-						<a href="./customers.php" class="nav-item">
-							<i class="fa fa-users"></i>
-							<span>Customers</span>
-						</a>
-					</li>
-<?php } ?>
-
-<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) {?>
-					<div class="dropdown">
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) { ?>
 						<li>
-							<a class="nav-item">
-								<i class="fa fa-list"></i>
-								<span>Orders<i class="fa fa-caret-down"></i></span>
+							<a href="./customers.php" class="nav-item">
+								<i class="fa fa-users"></i>
+								<span>Customers</span>
 							</a>
 						</li>
-						<div class="dropdown-content">
-							<a class="nav-item" href="./delivery.php">Delivery</a>
-							<?php if ($permission != 5) { ?>
-							<a class="nav-item" href="./pickup.php">Pickup</a>
-							<?php } ?>
-						</div>
-					</div>
-<?php } ?>
+					<?php } ?>
 
-<?php if ($permission == 1 || $permission == 5) {?>
-					<li>
-						<a class="nav-item" href="./drivers.php">
-							<i class="fa fa-truck"></i>
-							<span>Drivers</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4) {?>
-<li>
-						<a class="nav-select" href="./suppliers.php">
-							<i class="fa fa-link"></i>
-							<span>Suppliers</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4) {?>
-					<li>
-						<a class="nav-item" href="./supplier-orders.php">
-							<i class="fa fa-parachute-box"></i>
-							<span>Supply Orders</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4 || $permission == 5) {?>
-					<li>
-						<a class="nav-item" href="./stock.php">
-							<i class="fa fa-cubes"></i>
-							<span>Stock</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 3 || $permission == 4) {?>
-					<li>
-						<a class="nav-item" href="./sales.php">
-							<i class="fa fa-bar-chart"></i>
-							<span>Sales</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1) {?>
-					<li>
-						<a class="nav-item" href="./feedback.php">
-							<i class="fa fa-comment"></i>
-							<span>Feedback</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1) {?>
-					<div class="dropdown">
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) { ?>
+						<div class="dropdown">
+							<li>
+								<a class="nav-item">
+									<i class="fa fa-list"></i>
+									<span>Orders<i class="fa fa-caret-down"></i></span>
+								</a>
+							</li>
+							<div class="dropdown-content">
+								<a class="nav-item" href="./delivery.php">Delivery</a>
+								<?php if ($permission != 5) { ?>
+									<a class="nav-item" href="./pickup.php">Pickup</a>
+								<?php } ?>
+							</div>
+						</div>
+					<?php } ?>
+
+					<?php if ($permission == 1 || $permission == 5) { ?>
 						<li>
-							<a class="nav-item">
-								<i class="fa fa-user-circle"></i>
-								<span>Account<i class="fa fa-caret-down"></i></span>
+							<a class="nav-item" href="./drivers.php">
+								<i class="fa fa-truck"></i>
+								<span>Drivers</span>
 							</a>
 						</li>
-						<div class="dropdown-content">
-							<a class="nav-item" href="./change-pw.php">Change Password</a>
-							<a class="nav-item" href="./php/logout.php">Logout</a>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4) { ?>
+						<li>
+							<a class="nav-select" href="./suppliers.php">
+								<i class="fa fa-link"></i>
+								<span>Suppliers</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4) { ?>
+						<li>
+							<a class="nav-item" href="./supplier-orders.php">
+								<i class="fa fa-parachute-box"></i>
+								<span>Supply Orders</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4 || $permission == 5) { ?>
+						<li>
+							<a class="nav-item" href="./stock.php">
+								<i class="fa fa-cubes"></i>
+								<span>Stock</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4) { ?>
+						<li>
+							<a class="nav-item" href="./sales.php">
+								<i class="fa fa-bar-chart"></i>
+								<span>Sales</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1) { ?>
+						<li>
+							<a class="nav-item" href="./feedback.php">
+								<i class="fa fa-comment"></i>
+								<span>Feedback</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1) { ?>
+						<div class="dropdown">
+							<li>
+								<a class="nav-item">
+									<i class="fa fa-user-circle"></i>
+									<span>Account<i class="fa fa-caret-down"></i></span>
+								</a>
+							</li>
+							<div class="dropdown-content">
+								<a class="nav-item" href="./change-pw.php">Change Password</a>
+								<a class="nav-item" href="./php/logout.php">Logout</a>
+							</div>
 						</div>
-					</div>
-<?php } ?>
+					<?php } ?>
 
 				</ul>
 			</div>
 		</div>
 		<div class="admin-content">
-		
-				<div class="content">
-					<h1>Suppliers<a onclick="window.print();" class="print">Print</a></h1>
-					<h3 class="print-name">Sethmith Enterprise</h3>
+
+			<div class="content">
+				<div class="ltr-head print-name">
+					<img class="con-mid" style="float: left; text-align: left;" src="../images/ltr-logo.jpg">
+					<h1>SETHMITH ENTERPRISES</h1>
 					<br>
+					<h4>No 283, Sri Sudarshanarama rd, Kiribathgoda</h4>
+					<h4>0112915527/0717627641</h4>
+					<h4><?php echo $today . " &nbsp;&nbsp;&nbsp;" . $time ?></h4>
+				</div>
+				<h1>Suppliers<a onclick="window.print();" class="print">Print</a></h1>
+				<br>
 
-					<style>
-						.tbl {
-							font-size: 14px;
-							margin-left: 0px;
-							margin-top: 0px;
-							width: 60vw;
-						}
-					</style>
-					<?php
-					//$sql = "SELECT supplier_id, fname, lname, contact_no, email, status FROM supplier";
-					$sql = "SELECT * FROM supplier INNER JOIN supplier_payments ON supplier.supplier_id=supplier_payments.supplier_id WHERE supplier.status=1";
-					$result = $conn->query($sql);
+				<style>
+					.tbl {
+						font-size: 14px;
+						margin-left: 0px;
+						margin-top: 0px;
+						width: 60vw;
+					}
+				</style>
+				<?php
+				//$sql = "SELECT supplier_id, fname, lname, contact_no, email, status FROM supplier";
+				$sql = "SELECT * FROM supplier INNER JOIN supplier_payments ON supplier.supplier_id=supplier_payments.supplier_id WHERE supplier.status=1";
+				$result = $conn->query($sql);
 
-					if ($result->num_rows > 0) {
-						echo "
+				if ($result->num_rows > 0) {
+					echo "
 						<table class=\"tbl\">
 									<thead>
 										<th>ID</th>
@@ -167,31 +174,35 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 										<!--<th>Action</th>-->
 									</thead>
 									<tbody>";
-						// output data of each row
-						while ($row = $result->fetch_assoc()) {
-							echo "<tr>
+					// output data of each row
+					while ($row = $result->fetch_assoc()) {
+						echo "<tr>
 									<td>" . $row["supplier_id"] . "</td>
 									<td>" . $row["fname"] . " " . $row["lname"] . "</td>
 									<td>" . $row["company_name"] . "</td>
 									<td>" . $row["contact_no"] . "</td>
 									<td>" . $row["email"] . "</td>
-									<td>" . $row["amount"] . ".00 &nbsp;&nbsp;<a class=\"pay-btn\" href=\"./php/supplier_pay.php?supplier_id=".$row["supplier_id"]."\" style=\"border: 1px solid #000; padding: 1px 7px 1px 7px; border-radius: 5px; text-decoration: none; color: black; width: 50px; height: 20px;\">Pay</a></td>
+									<td>" . $row["amount"] . ".00 &nbsp;&nbsp;<a class=\"pay-btn\" href=\"./php/supplier_pay.php?supplier_id=" . $row["supplier_id"] . "&amount=" . $row["amount"] . "\" style=\"border: 1px solid #000; padding: 1px 7px 1px 7px; border-radius: 5px; text-decoration: none; color: black; width: 50px; height: 20px;\">Pay</a></td>
 									<td>" . $row["last_date"] . "</td>
 									<!--<td><a href=\"#\" class=\"delete\">Delete</a></td>-->
 
 								</tr>";
-						}
-						echo "</tbody>
-						</table>";
-					} else {
-						echo "0 results";
 					}
+					echo "</tbody>
+						</table>
+						<br><br>
+						<i class=\"fa fa-history\"><a style=\"color: black;\" href=\"./supplier-payments-history.php\"> &nbsp;Payments History</a></i>";
+				} else {
+					echo "0 results
+						<br><br>
+						<i class=\"fa fa-history\"><a style=\"color: black;\" href=\"./supplier-payments-history.php\"> &nbsp;Payments History</a></i>";
+				}
 
-					?>
+				?>
 
 
-				</div>
-				<form action="./php/add_supplier.php" method="post" style="margin-top: 50px;">
+			</div>
+			<form action="./php/add_supplier.php" method="post" style="margin-top: 50px;">
 				<div class="details">
 					<h2 class="page-title">Add New Supplier</h2>
 					<label class="driver_lbl">First Name<input required class="driver_in" type="text" name="fname"></label>
@@ -204,12 +215,12 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 				</div>
 			</form>
 		</div>
-		
+
 
 		<div class="main-content">
 			<header class="header">
 				<div class="search-bar">
-				<span><b>Sethmith Enterprise</b></span>
+					<span><b>Sethmith Enterprise</b></span>
 				</div>
 				<div class="social-icons">
 					<style>
@@ -222,8 +233,12 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 							color: rgba(0, 0, 0, .6);
 						}
 					</style>
-					<a class="ad-top-btn" href="./"><span class="fa fa-user"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font></span></a>
-					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font></span></a>
+					<a class="ad-top-btn" href="./"><span class="fa fa-user">
+							<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font>
+						</span></a>
+					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt">
+							<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font>
+						</span></a>
 					<div></div>
 				</div>
 			</header>

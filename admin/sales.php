@@ -216,7 +216,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 	</head>
 
 	<body>
-	<div class="sidenav">
+		<div class="sidenav">
 			<div class="sidenav-header">
 				<h3 class="brand">
 					<i class="fa fa-unlink"></i>
@@ -232,103 +232,109 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 							<span>Dashboard</span>
 						</a>
 					</li>
-<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) {?>
-					<li>
-						<a href="./customers.php" class="nav-item">
-							<i class="fa fa-users"></i>
-							<span>Customers</span>
-						</a>
-					</li>
-<?php } ?>
-
-<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) {?>
-					<div class="dropdown">
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) { ?>
 						<li>
-							<a class="nav-item">
-								<i class="fa fa-list"></i>
-								<span>Orders<i class="fa fa-caret-down"></i></span>
+							<a href="./customers.php" class="nav-item">
+								<i class="fa fa-users"></i>
+								<span>Customers</span>
 							</a>
 						</li>
-						<div class="dropdown-content">
-							<a class="nav-item" href="./delivery.php">Delivery</a>
-							<?php if ($permission != 5) { ?>
-							<a class="nav-item" href="./pickup.php">Pickup</a>
-							<?php } ?>
-						</div>
-					</div>
-<?php } ?>
+					<?php } ?>
 
-<?php if ($permission == 1 || $permission == 5) {?>
-					<li>
-						<a class="nav-item" href="./drivers.php">
-							<i class="fa fa-truck"></i>
-							<span>Drivers</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4) {?>
-<li>
-						<a class="nav-item" href="./suppliers.php">
-							<i class="fa fa-link"></i>
-							<span>Suppliers</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4) {?>
-					<li>
-						<a class="nav-item" href="./supplier-orders.php">
-							<i class="fa fa-parachute-box"></i>
-							<span>Supply Orders</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 2 || $permission == 4 || $permission == 5) {?>
-					<li>
-						<a class="nav-item" href="./stock.php">
-							<i class="fa fa-cubes"></i>
-							<span>Stock</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1 || $permission == 3 || $permission == 4) {?>
-					<li>
-						<a class="nav-select" href="./sales.php">
-							<i class="fa fa-bar-chart"></i>
-							<span>Sales</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1) {?>
-					<li>
-						<a class="nav-item" href="./feedback.php">
-							<i class="fa fa-comment"></i>
-							<span>Feedback</span>
-						</a>
-					</li>
-<?php } ?>
-<?php if ($permission == 1) {?>
-					<div class="dropdown">
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) { ?>
+						<div class="dropdown">
+							<li>
+								<a class="nav-item">
+									<i class="fa fa-list"></i>
+									<span>Orders<i class="fa fa-caret-down"></i></span>
+								</a>
+							</li>
+							<div class="dropdown-content">
+								<a class="nav-item" href="./delivery.php">Delivery</a>
+								<?php if ($permission != 5) { ?>
+									<a class="nav-item" href="./pickup.php">Pickup</a>
+								<?php } ?>
+							</div>
+						</div>
+					<?php } ?>
+
+					<?php if ($permission == 1 || $permission == 5) { ?>
 						<li>
-							<a class="nav-item">
-								<i class="fa fa-user-circle"></i>
-								<span>Account<i class="fa fa-caret-down"></i></span>
+							<a class="nav-item" href="./drivers.php">
+								<i class="fa fa-truck"></i>
+								<span>Drivers</span>
 							</a>
 						</li>
-						<div class="dropdown-content">
-							<a class="nav-item" href="./change-pw.php">Change Password</a>
-							<a class="nav-item" href="./php/logout.php">Logout</a>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4) { ?>
+						<li>
+							<a class="nav-item" href="./suppliers.php">
+								<i class="fa fa-link"></i>
+								<span>Suppliers</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4) { ?>
+						<li>
+							<a class="nav-item" href="./supplier-orders.php">
+								<i class="fa fa-parachute-box"></i>
+								<span>Supply Orders</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 2 || $permission == 4 || $permission == 5) { ?>
+						<li>
+							<a class="nav-item" href="./stock.php">
+								<i class="fa fa-cubes"></i>
+								<span>Stock</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1 || $permission == 3 || $permission == 4) { ?>
+						<li>
+							<a class="nav-select" href="./sales.php">
+								<i class="fa fa-bar-chart"></i>
+								<span>Sales</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1) { ?>
+						<li>
+							<a class="nav-item" href="./feedback.php">
+								<i class="fa fa-comment"></i>
+								<span>Feedback</span>
+							</a>
+						</li>
+					<?php } ?>
+					<?php if ($permission == 1) { ?>
+						<div class="dropdown">
+							<li>
+								<a class="nav-item">
+									<i class="fa fa-user-circle"></i>
+									<span>Account<i class="fa fa-caret-down"></i></span>
+								</a>
+							</li>
+							<div class="dropdown-content">
+								<a class="nav-item" href="./change-pw.php">Change Password</a>
+								<a class="nav-item" href="./php/logout.php">Logout</a>
+							</div>
 						</div>
-					</div>
-<?php } ?>
+					<?php } ?>
 
 				</ul>
 			</div>
 		</div>
 		<div class="admin-content">
 			<div class="content">
-
+				<div class="ltr-head print-name">
+					<img class="con-mid" style="float: left; text-align: left;" src="../images/ltr-logo.jpg">
+					<h1>SETHMITH ENTERPRISES</h1>
+					<br>
+					<h4>No 283, Sri Sudarshanarama rd, Kiribathgoda</h4>
+					<h4>0112915527/0717627641</h4>
+					<h4><?php echo $today . " &nbsp;&nbsp;&nbsp;" . $time ?></h4>
+				</div>
 				<h2>Sales details of the year <?php echo $year; ?><a onclick="window.print();" class="print">Print</a></h2>
-				<h3 class="print-name">Sethmith Enterprise</h3>
 				<br>
 				<canvas id="sales" width="400" height="200"></canvas>
 				<script>
@@ -401,76 +407,76 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 						type: 'bar',
 						data: {
 							labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-							labels: [<?php echo ($year-3).", ".($year-2).", ".($year-1).", ".$year ?>],
+							labels: [<?php echo ($year - 3) . ", " . ($year - 2) . ", " . ($year - 1) . ", " . $year ?>],
 							datasets: [{
-								label: '12.5 Kg Cylinders',
-								data: [<?php echo ($tot_3_quantity_1 + $tot_3_quantity_4).", ".($tot_2_quantity_1 + $tot_2_quantity_4).", ".($tot_1_quantity_1 + $tot_1_quantity_4).", ".($tot_quantity_1 + $tot_quantity_4); ?>],
-								backgroundColor: [
-									'rgba(255, 99, 132, 0.2)',
-									'rgba(255, 99, 132, 0.2)',
-									'rgba(255, 99, 132, 0.2)',
-									'rgba(255, 99, 132, 0.2)'
-								],
-								borderColor: [
-									'rgba(255, 99, 132, 1)',
-									'rgba(255, 99, 132, 1)',
-									'rgba(255, 99, 132, 1)',
-									'rgba(255, 99, 132, 1)'
-								],
-								borderWidth: 1
-							},
-							{
-								label: '5.0 Kg Cylinders',
-								data: [<?php echo ($tot_3_quantity_2 + $tot_3_quantity_5).", ".($tot_2_quantity_2 + $tot_2_quantity_5).", ".($tot_1_quantity_2 + $tot_1_quantity_5).", ".($tot_quantity_2 + $tot_quantity_5); ?>],
-								backgroundColor: [
-									'rgba(54, 162, 235, 0.2)',
-									'rgba(54, 162, 235, 0.2)',
-									'rgba(54, 162, 235, 0.2)',
-									'rgba(54, 162, 235, 0.2)'
-								],
-								borderColor: [
-									'rgba(54, 162, 235, 1)',
-									'rgba(54, 162, 235, 1)',
-									'rgba(54, 162, 235, 1)',
-									'rgba(54, 162, 235, 1)'
-								],
-								borderWidth: 1
-							},
-							{
-								label: '2.3 Kg Cylinders',
-								data: [<?php echo ($tot_3_quantity_3 + $tot_3_quantity_6).", ".($tot_2_quantity_3 + $tot_2_quantity_6).", ".($tot_1_quantity_3 + $tot_1_quantity_6).", ".($tot_quantity_3 + $tot_quantity_6); ?>],
-								backgroundColor: [
-									'rgba(255, 206, 86, 0.2)',
-									'rgba(255, 206, 86, 0.2)',
-									'rgba(255, 206, 86, 0.2)',
-									'rgba(255, 206, 86, 0.2)'
-								],
-								borderColor: [
-									'rgba(255, 206, 86, 1)',
-									'rgba(255, 206, 86, 1)',
-									'rgba(255, 206, 86, 1)',
-									'rgba(255, 206, 86, 1)'
-								],
-								borderWidth: 1
-							},
-							{
-								label: 'Accessories',
-								data: [<?php echo ($tot_3_quantity_7 + $tot_3_quantity_8 + $tot_3_quantity_9).", ".($tot_2_quantity_7 + $tot_2_quantity_8 + $tot_2_quantity_9).", ".($tot_1_quantity_7 + $tot_1_quantity_8 + $tot_1_quantity_9).", ".($tot_quantity_7 + $tot_quantity_8 + $tot_quantity_9); ?>],
-								backgroundColor: [
-									'rgba(75, 192, 192, 0.2)',
-									'rgba(75, 192, 192, 0.2)',
-									'rgba(75, 192, 192, 0.2)',
-									'rgba(75, 192, 192, 0.2)'
-								],
-								borderColor: [
-									'rgba(75, 192, 192, 1)',
-									'rgba(75, 192, 192, 1)',
-									'rgba(75, 192, 192, 1)',
-									'rgba(75, 192, 192, 1)'
-								],
-								borderWidth: 1
-							}
-						],
+									label: '12.5 Kg Cylinders',
+									data: [<?php echo ($tot_3_quantity_1 + $tot_3_quantity_4) . ", " . ($tot_2_quantity_1 + $tot_2_quantity_4) . ", " . ($tot_1_quantity_1 + $tot_1_quantity_4) . ", " . ($tot_quantity_1 + $tot_quantity_4); ?>],
+									backgroundColor: [
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(255, 99, 132, 0.2)',
+										'rgba(255, 99, 132, 0.2)'
+									],
+									borderColor: [
+										'rgba(255, 99, 132, 1)',
+										'rgba(255, 99, 132, 1)',
+										'rgba(255, 99, 132, 1)',
+										'rgba(255, 99, 132, 1)'
+									],
+									borderWidth: 1
+								},
+								{
+									label: '5.0 Kg Cylinders',
+									data: [<?php echo ($tot_3_quantity_2 + $tot_3_quantity_5) . ", " . ($tot_2_quantity_2 + $tot_2_quantity_5) . ", " . ($tot_1_quantity_2 + $tot_1_quantity_5) . ", " . ($tot_quantity_2 + $tot_quantity_5); ?>],
+									backgroundColor: [
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(54, 162, 235, 0.2)',
+										'rgba(54, 162, 235, 0.2)'
+									],
+									borderColor: [
+										'rgba(54, 162, 235, 1)',
+										'rgba(54, 162, 235, 1)',
+										'rgba(54, 162, 235, 1)',
+										'rgba(54, 162, 235, 1)'
+									],
+									borderWidth: 1
+								},
+								{
+									label: '2.3 Kg Cylinders',
+									data: [<?php echo ($tot_3_quantity_3 + $tot_3_quantity_6) . ", " . ($tot_2_quantity_3 + $tot_2_quantity_6) . ", " . ($tot_1_quantity_3 + $tot_1_quantity_6) . ", " . ($tot_quantity_3 + $tot_quantity_6); ?>],
+									backgroundColor: [
+										'rgba(255, 206, 86, 0.2)',
+										'rgba(255, 206, 86, 0.2)',
+										'rgba(255, 206, 86, 0.2)',
+										'rgba(255, 206, 86, 0.2)'
+									],
+									borderColor: [
+										'rgba(255, 206, 86, 1)',
+										'rgba(255, 206, 86, 1)',
+										'rgba(255, 206, 86, 1)',
+										'rgba(255, 206, 86, 1)'
+									],
+									borderWidth: 1
+								},
+								{
+									label: 'Accessories',
+									data: [<?php echo ($tot_3_quantity_7 + $tot_3_quantity_8 + $tot_3_quantity_9) . ", " . ($tot_2_quantity_7 + $tot_2_quantity_8 + $tot_2_quantity_9) . ", " . ($tot_1_quantity_7 + $tot_1_quantity_8 + $tot_1_quantity_9) . ", " . ($tot_quantity_7 + $tot_quantity_8 + $tot_quantity_9); ?>],
+									backgroundColor: [
+										'rgba(75, 192, 192, 0.2)',
+										'rgba(75, 192, 192, 0.2)',
+										'rgba(75, 192, 192, 0.2)',
+										'rgba(75, 192, 192, 0.2)'
+									],
+									borderColor: [
+										'rgba(75, 192, 192, 1)',
+										'rgba(75, 192, 192, 1)',
+										'rgba(75, 192, 192, 1)',
+										'rgba(75, 192, 192, 1)'
+									],
+									borderWidth: 1
+								}
+							],
 						},
 						options: {
 							scales: {
@@ -500,8 +506,12 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 							color: rgba(0, 0, 0, .6);
 						}
 					</style>
-					<a class="ad-top-btn" href="./"><span class="fa fa-user"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font></span></a>
-					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font></span></a>
+					<a class="ad-top-btn" href="./"><span class="fa fa-user">
+							<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font>
+						</span></a>
+					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt">
+							<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font>
+						</span></a>
 					<div></div>
 				</div>
 			</header>

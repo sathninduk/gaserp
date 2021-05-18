@@ -22,7 +22,7 @@
     margin-left:-250px;
   }
   .no-print {
-    display: none;
+    display: none!important;
   }
   #sales {
     margin-bottom: 300px;
@@ -60,12 +60,12 @@ body {
 }
 .header {
   /*background-color: #ebeef0;*/
-  background-color: rgba(52, 65, 74, 0.06);
-  backdrop-filter: blur(20px);
+  background-color: rgba(238, 238, 238, 1);
+  /*backdrop-filter: blur(20px);
   -ms-backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   -moz-backdrop-filter: blur(20px);
-  -o-backdrop-filter: blur(20px);
+  -o-backdrop-filter: blur(20px);*/
   padding-left: 60px;
   padding-right: 40px;
   border-color: transparent;
@@ -338,7 +338,10 @@ td {
   margin-left: 60%;
 }
 .nav-select {
-  background-color: #ebeef0 !important;
+  /*background-color: #ebeef0 !important;*/
+  background-color: #00a3ff!important;
+  color: #fff!important;
+  box-shadow: 0px 0px 4px 0px rgb(0 163 255 / 100%)!important;
   border-radius: 7px;
   font-size: 14px !important;
   font-weight: 300 !important;
@@ -368,4 +371,46 @@ td {
 .print:hover {
   background-color: #daddde;
   cursor: pointer;
+}
+
+.ltr-head {
+  border: 2px solid #000;
+  border-radius: 5px;
+  width: 90vw;
+  padding: 20px 30px 25px 30px;
+  margin-bottom: 50px;
+}
+
+.ltr-head h1 {
+  text-align: center;
+}
+
+.ltr-head h4 {
+  text-align: right;
+}
+
+.ltr-head img {
+  width: 130px;
+  height: auto;
+  position: absolute;
+}
+
+.con-mid {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media print {
+.admin-content {
+  padding: 40px 300px 40px;
+}
+.tbl {
+  width: 90vw!important;
+}
+.dash_items {
+  box-shadow: none!important;
+}
 }

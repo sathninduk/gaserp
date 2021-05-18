@@ -32,7 +32,7 @@ $new_amount = $amount + $add_amount;
 //db - tbl - stock & supplier_payments
 
 $sql_1 = "UPDATE supplier_payments SET amount='$new_amount', last_date='$date' WHERE supplier_id='$supplier_id'";
-$sql_2 = "UPDATE supply_orders SET status=0 WHERE supply_order_id='$supply_order_id'";
+$sql_2 = "UPDATE supply_orders SET rec_date = '$date', status=0 WHERE supply_order_id='$supply_order_id'";
 $sql_3 = "UPDATE products SET availability='$new_availability' WHERE product_id='$product_id'";
 
 if ($conn->query($sql_1) === TRUE && $conn->query($sql_2) === TRUE && $conn->query($sql_3) === TRUE) {

@@ -25,7 +25,7 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 	</head>
 
 	<body>
-	<div class="sidenav">
+		<div class="sidenav">
 			<div class="sidenav-header">
 				<h3 class="brand">
 					<i class="fa fa-unlink"></i>
@@ -33,7 +33,7 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 				</h3>
 				<!--<span class="fa fa-bars"></span>-->
 			</div>
-            <div class="sidenav-menu">
+			<div class="sidenav-menu">
 				<ul>
 					<li>
 						<a class="nav-item" href="./drivers_dashboard.php">
@@ -41,7 +41,7 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 							<span>Deliveries</span>
 						</a>
 					</li>
-                    <li>
+					<li>
 						<a class="nav-select" href="./driver_dashboard_history.php">
 							<i class="fa fa-money-bill"></i>
 							<span>Payments</span>
@@ -63,52 +63,60 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 			</div>
 		</div>
 
-        <?php
-        $sql = "SELECT debit_balance, amount FROM driver_payments WHERE driver_id = '$driver_id' LIMIT 1";
-        $result = $conn->query($sql);
-        
-        if ($result->num_rows > 0) {
-          // output data of each row
-          while($row = $result->fetch_assoc()) {
-            $debit_balance = $row["debit_balance"];
-            $salary = $row["amount"];
-          }
-        } else {
-          echo "0 results";
-        }
-        ?>
+		<?php
+		$sql = "SELECT debit_balance, amount FROM driver_payments WHERE driver_id = '$driver_id' LIMIT 1";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+			// output data of each row
+			while ($row = $result->fetch_assoc()) {
+				$debit_balance = $row["debit_balance"];
+				$salary = $row["amount"];
+			}
+		} else {
+			echo "0 results";
+		}
+		?>
 
 		<div class="admin-content">
-				<div class="content">
-                <h1>Summery</h1>
-                <h3 class="print-name">Sethmith Enterprise</h3>
-                <br>
-                <p style="width: 350px;"><span><b>Current Debit Balance: </b></span><span style="float: right;">LKR <?php echo $debit_balance; ?>.00</span></p>
-                <p style="width: 350px;"><b>Current Salary: </b><span style="float: right;">LKR <?php echo $salary; ?>.00</span></p>
-                <br><hr style="width: 65vw;"><br>
-				<h1>Payments - History<a onclick="window.print();" class="print">Print</a></h1>
-				
+			<div class="content">
+				<div class="ltr-head print-name">
+					<img class="con-mid" style="float: left; text-align: left;" src="../images/ltr-logo.jpg">
+					<h1>SETHMITH ENTERPRISES</h1>
+					<br>
+					<h4>No 283, Sri Sudarshanarama rd, Kiribathgoda</h4>
+					<h4>0112915527/0717627641</h4>
+					<h4><?php echo $today . " &nbsp;&nbsp;&nbsp;" . $time ?></h4>
+				</div>
+				<h1>Summery</h1>
 				<br>
-					<style>
-						.tbl {
-							font-size: 14px;
-							margin-left: 0px;
-							width: 65vw;
-							margin-top: 0px;
-						}
-					</style>
-					<?php
-					
-					// Order Data Fetch
-					//$sql = "SELECT * FROM orders WHERE obtaining_method_id=1";
-					//$sql = "SELECT * FROM orders INNER JOIN customer ON orders.customer_id=customer.customer_id";
+				<p style="width: 350px;"><span><b>Current Debit Balance: </b></span><span style="float: right;">LKR <?php echo $debit_balance; ?>.00</span></p>
+				<p style="width: 350px;"><b>Current Salary: </b><span style="float: right;">LKR <?php echo $salary; ?>.00</span></p>
+				<br>
+				<hr style="width: 65vw;"><br>
+				<h1>Payments - History<a onclick="window.print();" class="print">Print</a></h1>
 
-					$sql = "SELECT * FROM (driver_payments_history INNER JOIN driver ON driver.driver_id = driver_payments_history.driver_id) WHERE driver_payments_history.driver_id = '$driver_id' ORDER BY driver_payments_history.id";
+				<br>
+				<style>
+					.tbl {
+						font-size: 14px;
+						margin-left: 0px;
+						width: 65vw;
+						margin-top: 0px;
+					}
+				</style>
+				<?php
 
-					$result = $conn->query($sql);
+				// Order Data Fetch
+				//$sql = "SELECT * FROM orders WHERE obtaining_method_id=1";
+				//$sql = "SELECT * FROM orders INNER JOIN customer ON orders.customer_id=customer.customer_id";
 
-					if ($result->num_rows > 0) {
-						echo "
+				$sql = "SELECT * FROM (driver_payments_history INNER JOIN driver ON driver.driver_id = driver_payments_history.driver_id) WHERE driver_payments_history.driver_id = '$driver_id' ORDER BY driver_payments_history.id";
+
+				$result = $conn->query($sql);
+
+				if ($result->num_rows > 0) {
+					echo "
 						<table class=\"tbl\">
 									<thead>
 										
@@ -122,19 +130,19 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 
 									</thead>
 									<tbody>";
-						// output data of each row
-						while ($row = $result->fetch_assoc()) {
+					// output data of each row
+					while ($row = $result->fetch_assoc()) {
 
-							// payment - credit
+						// payment - credit
 
-                            if ($row["type"] == "Credit") {
-                                $payment_type = "Debit Balance";
-                            } else {
-                                $payment_type = "Salary";
-                            }
-							
+						if ($row["type"] == "Credit") {
+							$payment_type = "Debit Balance";
+						} else {
+							$payment_type = "Salary";
+						}
 
-							echo "<tr>
+
+						echo "<tr>
 								
 									<td>" . $row["date"] . "</td>
 									<td>" . $row["driver_id"] . "</td>
@@ -142,17 +150,17 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 									<td>" . $row["payment"] . ".00</td>
 									<td>" . $payment_type . "</td>
 								</tr>";
-						}
-						echo "</tbody>
-						</table>";
-					} else {
-						echo "0 results";
 					}
+					echo "</tbody>
+						</table>";
+				} else {
+					echo "0 results";
+				}
 
-					?>
+				?>
 
 
-				</div>
+			</div>
 
 
 		</div>
@@ -160,7 +168,7 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 		<div class="main-content">
 			<header class="header">
 				<div class="search-bar">
-				<span><b>Sethmith Enterprise</b></span>
+					<span><b>Sethmith Enterprise</b></span>
 				</div>
 				<div class="social-icons">
 					<style>
@@ -173,8 +181,12 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 							color: rgba(0, 0, 0, .6);
 						}
 					</style>
-					<a class="ad-top-btn" href="./"><span class="fa fa-user"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font></span></a>
-					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font></span></a>
+					<a class="ad-top-btn" href="./"><span class="fa fa-user">
+							<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Admin</font>
+						</span></a>
+					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt">
+							<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font>
+						</span></a>
 					<div></div>
 				</div>
 			</header>

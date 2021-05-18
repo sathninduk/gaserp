@@ -412,7 +412,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 					<span style="color: #000; font-size: 14px;">Payment Method: &nbsp;&nbsp;</span>
 					<select required name="payment_method" style="margin-top: 20px; font-size: 14px; outline: none;">
 						<option value="">Select method</option>
-						<option value="1">Credit card</option>
+						<option value="1">Online Payment</option>
 						<option value="2">Cash on delivery</option>
 					</select>
 				</div>

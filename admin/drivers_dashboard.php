@@ -63,30 +63,37 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 			</div>
 		</div>
 		<div class="admin-content">
-				<div class="content">
+			<div class="content">
+				<div class="ltr-head print-name">
+					<img class="con-mid" style="float: left; text-align: left;" src="../images/ltr-logo.jpg">
+					<h1>SETHMITH ENTERPRISES</h1>
+					<br>
+					<h4>No 283, Sri Sudarshanarama rd, Kiribathgoda</h4>
+					<h4>0112915527/0717627641</h4>
+					<h4><?php echo $today . " &nbsp;&nbsp;&nbsp;" . $time ?></h4>
+				</div>
 				<h1>Deliveries<a onclick="window.print();" class="print">Print</a></h1>
-				<h3 class="print-name">Sethmith Enterprise</h3>
 				<br>
-					<style>
-						.tbl {
-							font-size: 14px;
-							margin-left: 0px;
-							width: 65vw;
-							margin-top: 0px;
-						}
-					</style>
-					<?php
-					
-					// Order Data Fetch
-					//$sql = "SELECT * FROM orders WHERE obtaining_method_id=1";
-					//$sql = "SELECT * FROM orders INNER JOIN customer ON orders.customer_id=customer.customer_id";
+				<style>
+					.tbl {
+						font-size: 14px;
+						margin-left: 0px;
+						width: 65vw;
+						margin-top: 0px;
+					}
+				</style>
+				<?php
 
-					$sql = "SELECT * FROM (((orders INNER JOIN customer ON orders.customer_id = customer.customer_id) INNER JOIN payment_type ON orders.payment_type_id = payment_type.payment_type_id) INNER JOIN delivery ON delivery.order_id = orders.order_id) WHERE orders.obtaining_method_id=1 AND orders.status=1 AND delivery.driver_id='$driver_id' ORDER BY orders.order_id";
+				// Order Data Fetch
+				//$sql = "SELECT * FROM orders WHERE obtaining_method_id=1";
+				//$sql = "SELECT * FROM orders INNER JOIN customer ON orders.customer_id=customer.customer_id";
 
-					$result = $conn->query($sql);
+				$sql = "SELECT * FROM (((orders INNER JOIN customer ON orders.customer_id = customer.customer_id) INNER JOIN payment_type ON orders.payment_type_id = payment_type.payment_type_id) INNER JOIN delivery ON delivery.order_id = orders.order_id) WHERE orders.obtaining_method_id=1 AND orders.status=1 AND delivery.driver_id='$driver_id' ORDER BY orders.order_id";
 
-					if ($result->num_rows > 0) {
-						echo "
+				$result = $conn->query($sql);
+
+				if ($result->num_rows > 0) {
+					echo "
 						<table class=\"tbl\">
 									<thead>
 										<th style=\"max-width: 40px;\">Order</th>
@@ -99,12 +106,12 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 										<th style=\"max-width: 200px;\" colspan=\"3\">Action</th>
 									</thead>
 									<tbody>";
-						// output data of each row
-						while ($row = $result->fetch_assoc()) {
+					// output data of each row
+					while ($row = $result->fetch_assoc()) {
 
-							
 
-							echo "<tr>
+
+						echo "<tr>
 									<td style=\"text-align: center;\">" . $row["order_id"] . "</td>
 									<td>" . $row["date"] . "</td>
 									<td style=\"text-transform: capitalize;\">" . $row["fname"] . " " . $row["lname"] . "</td>
@@ -112,19 +119,19 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 									<td>" . $row["type_name"] . "</td>
 									<!--<td>" . $row["driver_id"] . "</td>-->
 									<td><a target=\"_blank\" href=\"./php/fpdf/invoice_driver.php?order_id=" . $row["order_id"] . "\">Show</a></td>
-									<td><a href=\"./php/delivery_charge_driver.php?driver_id=".$row["driver_id"]."&order_id=".$row["order_id"] . "&payment_type_id=" . $row["payment_type_id"] . "\" class=\"edit\">Delivered</a></td>
+									<td><a href=\"./php/delivery_charge_driver.php?driver_id=" . $row["driver_id"] . "&order_id=" . $row["order_id"] . "&payment_type_id=" . $row["payment_type_id"] . "\" class=\"edit\">Delivered</a></td>
 								</tr>";
-						}
-						echo "</tbody>
-						</table>";
-					} else {
-						echo "0 results";
 					}
+					echo "</tbody>
+						</table>";
+				} else {
+					echo "0 results";
+				}
 
-					?>
+				?>
 
 
-				</div>
+			</div>
 
 
 		</div>
@@ -132,7 +139,7 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 		<div class="main-content">
 			<header class="header">
 				<div class="search-bar">
-				<span><b>Sethmith Enterprise</b></span>
+					<span><b>Sethmith Enterprise</b></span>
 				</div>
 				<div class="social-icons">
 					<style>
@@ -146,7 +153,9 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 						}
 					</style>
 					<a class="ad-top-btn" href="./drivers_dashboard.php"><span class="fa fa-user"><b> <?php echo $_SESSION["email"]; ?></b></span></a>
-					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt"><font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font></span></a>
+					<a class="ad-top-btn" href="./php/logout.php"><span class="fa fa-sign-out-alt">
+							<font style="font-weight: 400; font-family: 'Poppins', sans-serif;"> Logout</font>
+						</span></a>
 					<div></div>
 				</div>
 			</header>

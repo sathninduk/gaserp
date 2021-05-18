@@ -135,8 +135,17 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 		</div>
 		<div class="admin-content">
 				<div class="content">
+
+				<div class="ltr-head print-name">
+					<img class="con-mid" style="float: left; text-align: left;" src="../images/ltr-logo.jpg">
+					<h1>SETHMITH ENTERPRISES</h1>
+					<br>
+					<h4>No 283, Sri Sudarshanarama rd, Kiribathgoda</h4>
+					<h4>0112915527/0717627641</h4>
+					<h4><?php echo $today." &nbsp;&nbsp;&nbsp;".$time ?></h4>
+				</div>
+
 				<h1>Deliveries<a onclick="window.print();" class="print">Print</a></h1>
-				<h3 class="print-name">Sethmith Enterprise</h3>
 				<br>
 					<style>
 						.tbl {

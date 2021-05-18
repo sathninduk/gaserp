@@ -18,7 +18,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 	<html>
 
 	<head>
-		<title>Pickups - History</title>
+		<title>Supplier Payments - History</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/font-awesome-line-awesome/css/all.min.css">
 		<link rel="stylesheet" href="../style/Admin.css">
@@ -53,7 +53,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 					<?php if ($permission == 1 || $permission == 3 || $permission == 4 || $permission == 5) { ?>
 						<div class="dropdown">
 							<li>
-								<a class="nav-select">
+								<a class="nav-item">
 									<i class="fa fa-list"></i>
 									<span>Orders<i class="fa fa-caret-down"></i></span>
 								</a>
@@ -61,7 +61,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 							<div class="dropdown-content">
 								<a class="nav-item" href="./delivery.php">Delivery</a>
 								<?php if ($permission != 5) { ?>
-									<a class="nav-select" href="./pickup.php">Pickup</a>
+									<a class="nav-item" href="./pickup.php">Pickup</a>
 								<?php } ?>
 							</div>
 						</div>
@@ -77,7 +77,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 					<?php } ?>
 					<?php if ($permission == 1 || $permission == 2 || $permission == 4) { ?>
 						<li>
-							<a class="nav-item" href="./suppliers.php">
+							<a class="nav-select" href="./suppliers.php">
 								<i class="fa fa-link"></i>
 								<span>Suppliers</span>
 							</a>
@@ -143,7 +143,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 					<h4>0112915527/0717627641</h4>
 					<h4><?php echo $today . " &nbsp;&nbsp;&nbsp;" . $time ?></h4>
 				</div>
-				<h1>Pickups - History<a onclick="window.print();" class="print">Print</a></h1>
+				<h1>Supplier Payments - History<a onclick="window.print();" class="print">Print</a></h1>
 				<br>
 				<style>
 					.tbl {
@@ -159,7 +159,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 				//$sql = "SELECT * FROM orders WHERE obtaining_method_id=1";
 				//$sql = "SELECT * FROM orders INNER JOIN customer ON orders.customer_id=customer.customer_id";
 
-				$sql = "SELECT * FROM ((orders INNER JOIN customer ON orders.customer_id = customer.customer_id) INNER JOIN payment_type ON orders.payment_type_id = payment_type.payment_type_id) WHERE orders.obtaining_method_id=2 AND orders.status=0";
+				$sql = "SELECT * FROM (supplier_payments_history INNER JOIN supplier ON supplier.supplier_id = supplier_payments_history.supplier_id) ORDER BY supplier_payments_history.id";
 
 				$result = $conn->query($sql);
 
@@ -167,29 +167,24 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 					echo "
 						<table class=\"tbl\">
 									<thead>
-										<th style=\"max-width: 40px;\">Order</th>
+										
 										<th style=\"max-width: 120px;\">Date</th>
-										<th style=\"max-width: 200px;\">Customer Name</th>
+										<th style=\"max-width: 80px;\">Supplier ID</th>
+										<th style=\"max-width: 200px;\">Supplier</th>
 										<th style=\"max-width: 40px;\">Total Amount (LKR)</th>
-										<th style=\"max-width: 80px;\">Payment Type</th>
-										<th style=\"max-width: 200px;\">Invoice</th>
 									</thead>
 									<tbody>";
 					// output data of each row
 					while ($row = $result->fetch_assoc()) {
 
-
+						// payment - credit
 
 						echo "<tr>
-									<td style=\"text-align: center;\">" . $row["order_id"] . "</td>
 									<td>" . $row["date"] . "</td>
-									<td style=\"text-transform: capitalize;\">" . $row["fname"] . " " . $row["lname"] . "</td>
-									<td>" . $row["total_price"] . ".00</td>
-									<td>" . $row["type_name"] . "</td>
-
-									<td><a target=\"_blank\" href=\"./php/fpdf/invoice.php?order_id=" . $row["order_id"] . "\">Show</a></td>
-
-
+									<td>" . $row["supplier_id"] . "</td>
+									<td style=\"text-transform: capitalize;\">" . $row["company_name"] . "</td>
+									<td>" . $row["amount"] . ".00</td>
+									
 								</tr>";
 					}
 					echo "</tbody>

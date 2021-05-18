@@ -12,13 +12,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     $year = date("Y");
 
-    // date
-    $date = date("Y-m-d");
+
 
     // time
     date_default_timezone_set('Asia/Colombo');
     $time = date("H:i:s");
-
+    // date
+    $date = date("Y-m-d");
 
     $customer_id            = $_SESSION["customer_id"];
     $fname                  = $_SESSION["fname"];
