@@ -313,6 +313,14 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 
 							<a onclick="window.print();" style="display: inline; float: right;" class="print no-print">Print</a>
 							<canvas id="stock" width="400" height="200"></canvas>
+							<div class="print-name">
+								<br><br>
+								<span class="report-foot">Checked by:</span>
+								<br>
+								<span class="report-foot">Approved by:</span>
+								<br>
+								<span class="report-foot">Date: <?php echo $today; ?></span>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -394,6 +402,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 						}
 					});
 				</script>
+
 	</body>
 
 	</html>

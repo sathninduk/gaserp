@@ -68,7 +68,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                 //mysqli_free_result($result);
                 $delivery_available = TRUE;
 
-               
+
 
 
                 $driverArray[$index] = $row["driver_id"];
@@ -76,11 +76,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
             }
 
             if ($delivery_available == TRUE) {
-              
             }
         } else {
-           
-            
+
+
 
             echo "<script>";
             echo "  alert('Delivery Unavailable!');";
@@ -111,11 +110,11 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         $result = $conn->query($sql_get_1 . $sql_get_3 . $sql_get_2);
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-               
+
                 $last_driver = $row["driver_id"];
             }
         } else {
-            echo "Error";
+            //echo "Error";
         }
 
         $array_max = count($driverArray) - 1;
@@ -142,10 +141,8 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         } else {
             $delivery_id = 1;
         }
-    
-
     }
-    
+
 
 
 
@@ -520,50 +517,51 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
 
     // db - order_has_products insert section
-    if (isset($pid_1) && isset($sql_1)) {
+    if (isset($pid_1)) {
         $sql_1 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_1', '$year', '$qty_1', '$price_1', 1)";
     }
 
-    if (isset($pid_2) && isset($sql_2)) {
+    if (isset($pid_2)) {
         $sql_2 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_2', '$year', '$qty_2', '$price_2', 1)";
     }
 
-    if (isset($pid_3) && isset($sql_3)) {
+    if (isset($pid_3)) {
         $sql_3 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_3', '$year', '$qty_3', '$price_3', 1)";
     }
 
-    if (isset($pid_4) && isset($sql_4)) {
+    if (isset($pid_4)) {
         $sql_4 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_4', '$year', '$qty_4', '$price_4', 1)";
     }
 
-    if (isset($pid_5) && isset($sql_5)) {
+    if (isset($pid_5)) {
         $sql_5 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_5', '$year', '$qty_5', '$price_5', 1)";
     }
 
-    if (isset($pid_6) && isset($sql_6)) {
+    if (isset($pid_6)) {
         $sql_6 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_6', '$year', '$qty_6', '$price_6', 1)";
     }
 
-    if (isset($pid_7) && isset($sql_7)) {
+    if (isset($pid_7)) {
         $sql_7 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_7', '$year', '$qty_7', '$price_7', 1)";
     }
 
-    if (isset($pid_8) && isset($sql_8)) {
+    if (isset($pid_8)) {
         $sql_8 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_8', '$year', '$qty_8', '$price_8', 1)";
     }
 
-    if (isset($pid_9) && isset($sql_9)) {
+    if (isset($pid_9)) {
         $sql_9 = "INSERT INTO order_has_products (order_id, product_id, year, quantity, price, status) 
     VALUES ('$order_id', '$pid_9', '$year', '$qty_9', '$price_9', 1)";
     }
+
 
 
 
@@ -576,7 +574,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         $ok_10 = false;
     }
 
-    if (isset($pid_1) && isset($sql_1)) {
+    if (isset($pid_1)) {
         if ($conn->query($sql_1) === TRUE) {
             //echo "New record created successfully";
             $ok_1 = true;
@@ -588,7 +586,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         $ok_1 = true;
     }
 
-    if (isset($pid_2) && isset($sql_2)) {
+    if (isset($pid_2)) {
         if ($conn->query($sql_2) === TRUE) {
             //echo "New record created successfully";
             $ok_2 = true;
@@ -600,7 +598,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         $ok_2 = true;
     }
 
-    if (isset($pid_3) && isset($sql_3)) {
+    if (isset($pid_3)) {
         if ($conn->query($sql_3) === TRUE) {
             //echo "New record created successfully";
             $ok_3 = true;
@@ -613,7 +611,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
 
 
-    if (isset($pid_4) && isset($sql_4)) {
+    if (isset($pid_4)) {
         if ($conn->query($sql_4) === TRUE) {
             //echo "New record created successfully";
             $ok_4 = true;
@@ -626,7 +624,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
 
 
-    if (isset($pid_5) && isset($sql_5)) {
+    if (isset($pid_5)) {
         if ($conn->query($sql_5) === TRUE) {
             //echo "New record created successfully";
             $ok_5 = true;
@@ -639,7 +637,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
 
 
-    if (isset($pid_6) && isset($sql_6)) {
+    if (isset($pid_6)) {
         if ($conn->query($sql_6) === TRUE) {
             //echo "New record created successfully";
             $ok_6 = true;
@@ -652,7 +650,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
 
 
-    if (isset($pid_7) && isset($sql_7)) {
+    if (isset($pid_7)) {
         if ($conn->query($sql_7) === TRUE) {
             //echo "New record created successfully";
             $ok_7 = true;
@@ -665,7 +663,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
 
 
-    if (isset($pid_8) && isset($sql_8)) {
+    if (isset($pid_8)) {
         if ($conn->query($sql_8) === TRUE) {
             //echo "New record created successfully";
             $ok_8 = true;
@@ -678,7 +676,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     }
 
 
-    if (isset($pid_9) && isset($sql_9)) {
+    if (isset($pid_9)) {
         if ($conn->query($sql_9) === TRUE) {
             //echo "New record created successfully";
             $ok_9 = true;
@@ -816,13 +814,13 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
 
-    if ($ok_1 == true && $ok_2 == true && $ok_3 == true && $ok_4 == true && $ok_5 == true && $ok_6 == true && $ok_7 == true && $ok_8 == true && $ok_9 == true && $ok_10 == true && $ok_11 == true && $ok_12 == true && $ok_13 == true && $ok_14 == true && $ok_15 == true && $ok_16 == true && $ok_17 == true && $ok_18 == true && $ok_19 == true) {
+    if ($ok_10 == true && $ok_11 == true && $ok_12 == true && $ok_13 == true && $ok_14 == true && $ok_15 == true && $ok_16 == true && $ok_17 == true && $ok_18 == true && $ok_19 == true) {
         echo "<script>";
         echo "  alert('Purchase successful!');";
         echo "  window.location = '../Home2.php';";
         echo "</script>";
     }
-    $conn->close();
+
 ?>
 
     <!DOCTYPE html>
@@ -839,5 +837,5 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <?php
 }
-
+$conn->close();
 ?>

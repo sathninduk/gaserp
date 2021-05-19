@@ -130,6 +130,15 @@ if (!isset($_SESSION["driver_loggedin"]) || $_SESSION["driver_loggedin"] !== tru
 
 				?>
 
+				<div class="print-name">
+					<br><br>
+					<span class="report-foot">Checked by:</span>
+					<br>
+					<span class="report-foot">Approved by:</span>
+					<br>
+					<span class="report-foot">Date: <?php echo $today; ?></span>
+				</div>
+
 
 			</div>
 

@@ -68,7 +68,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
 
     // update debit balance of the driver
     $sql_4 = "UPDATE driver_payments SET debit_balance = '$new_debit_balance' WHERE driver_id='$driver_id'";
-
+    $sql_4_veri = "";
     if ($conn->query($sql_4) === TRUE) {
       $sql_4_veri == TRUE;
     }

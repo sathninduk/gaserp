@@ -174,9 +174,7 @@ if (!isset($_SESSION["admin_loggedin"]) || $_SESSION["admin_loggedin"] !== true)
   $pdf->SetTextColor(0, 0, 0);
   $pdf->SetFont('Arial', '', 10);
 
-  $sql = "SELECT *
-FROM order_has_products
-INNER JOIN products ON order_has_products.product_id = products.product_id WHERE order_id='$order_id'";
+  $sql = "SELECT * FROM order_has_products INNER JOIN products ON order_has_products.product_id = products.product_id WHERE order_id='$order_id'";
 
   $result = $conn->query($sql);
   $num_products = $result->num_rows;
