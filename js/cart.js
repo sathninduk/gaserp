@@ -85,20 +85,3 @@ function addItemToCart(pid,title,price,imageSrc){
 	
 }
 //to update the total of our cart every time 
-
-function updateCartTotal(){
-	var shopItemContainer = document.getElementsByClassName('shop-items')[0]
-	var shopRows = shopItemContainer.getElementsByClassName('shop-row')
-	var total =0;
-	for (var i = 0; i < shopRows.length; i++){
-		var shopRow = shopRows[i]
-		var priceElement = shopRow.getElementsByClassName('shop-price')[0]
-		var quantityElement = shopRow.getElementsByClassName('shop-quantity-input')[0]
-		var price = parseInt(priceElement.innerText.replace('Rs',''))
-		var quantity = quantityElement.value
-		total = total + (price * quantity)
-	}
-	total = Math.round(total * 100)/100
-	document.getElementsByClassName('shop-total-price')[0].innerText = 'Rs ' + total + '.00'
-	document.getElementById('total_input').value = total
-}

@@ -68,17 +68,17 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 
 
-		//get row count - drivers
-		$sql_get_101 = "SELECT * FROM driver WHERE status = 1 AND start < '$time' AND end > '$time'";
-		$result = $conn->query($sql_get_101);
-		if ($result->num_rows > 0) {
-			$drivers_have = TRUE;
-		} else {
-			$drivers_have = FALSE;
-		}
+	//get row count - drivers
+	$sql_get_101 = "SELECT * FROM driver WHERE status = 1 AND start < '$time' AND end > '$time'";
+	$result = $conn->query($sql_get_101);
+	if ($result->num_rows > 0) {
+		$drivers_have = TRUE;
+	} else {
+		$drivers_have = FALSE;
+	}
 
 
-	if ($obtaining_method_id==1 && $drivers_have == FALSE) {
+	if ($obtaining_method_id == 1 && $drivers_have == FALSE) {
 		echo "<script>";
 		echo "  alert('Delivery Unavailable!');";
 		echo "  window.location = './Home2.php';";
@@ -427,6 +427,29 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 				<button class="btn btn-primary btn-purchase" type="submit">PURCHASE</button>
 			</form>
 		</section>
+		<script>
+			function updateCartTotal() {
+				var shopItemContainer = document.getElementsByClassName('shop-items')[0]
+				var shopRows = shopItemContainer.getElementsByClassName('shop-row')
+				<?php if ($obtaining_method_id == 1) { ?>
+					var total = 100;
+				<?php } else { ?>
+					var total = 0;
+				<?php } ?>
+				for (var i = 0; i < shopRows.length; i++) {
+					var shopRow = shopRows[i]
+					var priceElement = shopRow.getElementsByClassName('shop-price')[0]
+					var quantityElement = shopRow.getElementsByClassName('shop-quantity-input')[0]
+					var price = parseInt(priceElement.innerText.replace('Rs', ''))
+					var quantity = quantityElement.value
+					total = total + (price * quantity)
+				}
+				total = Math.round(total * 100) / 100
+				document.getElementsByClassName('shop-total-price')[0].innerText = 'Rs ' + total + '.00'
+				//document.getElementById('total_input').value = total
+				document.getElementById('total_input').value = total <?php if ($obtaining_method_id == 1) { ?>-100<?php } else {} ?>
+			}
+		</script>
 	</body>
 
 	</html>
