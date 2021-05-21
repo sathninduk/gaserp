@@ -129,8 +129,10 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
                         if ($row["obtaining_method_id"] == 1) {
                             $obtaining_method_type = "Delivery";
+                            $final_total = $row["total_price"] + 100;
                         } elseif ($row["obtaining_method_id"] == 2) {
                             $obtaining_method_type = "Pickup";
+                            $final_total = $row["total_price"];
                         }
 
                         if ($row["payment_type_id"] == 2) {
@@ -141,7 +143,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
                         echo "<tr>
               <td class=\"cell\">" . $row["order_id"] . "</td>
               <td class=\"cell\">" . $row["date"] . "</td>
-              <td class=\"cell\">LKR " . $row["total_price"] . ".00</td>
+              <td class=\"cell\">LKR " . $final_total . ".00</td>
               <td class=\"cell\">" . $obtaining_method_type . "</td>
               <td class=\"cell\">" . $payment_type . "</td>
               <td style=\"text-align: center;\" class=\"cell\">" . $status . "</td>
