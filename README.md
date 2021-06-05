@@ -12,3 +12,13 @@
 - MAMP (Recommended): https://www.mamp.info/en/downloads/
 - XAMPP (V7.4.19): https://www.apachefriends.org/download.html
 - WAMP: https://www.wampserver.com/en/
+
+### Install Repository
+```
+cd htdocs
+```
+```
+git clone https://github.com/sathninduk/gas.git gas
+```
+Start Apache
+Visit http://localhost/gas/
