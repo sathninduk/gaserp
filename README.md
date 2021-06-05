@@ -9,9 +9,6 @@
 
 ## Installation
 ### Download local server environment
-- MAMP (Recommended)
-https://www.mamp.info/en/downloads/
-- XAMPP (V7.4.19)
-https://www.apachefriends.org/download.html
-- WAMP
-https://www.wampserver.com/en/
+- MAMP (Recommended): https://www.mamp.info/en/downloads/
+- XAMPP (V7.4.19): https://www.apachefriends.org/download.html
+- WAMP: https://www.wampserver.com/en/
