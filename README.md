@@ -20,5 +20,10 @@ cd htdocs
 ```
 git clone https://github.com/sathninduk/gas.git gas
 ```
-Start Apache
-Visit http://localhost/gas/
+### Install Database
+1. Create Database called *gas*
+2. Import *gas.sql* file into the database
+
+### Start
+1. Start *Apache* via local server environment
+2. Visit http://localhost/gas/
