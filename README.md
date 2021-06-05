@@ -1,8 +1,8 @@
 # Online Gas Delivery and Management System with Simple ERP
-### Version
+### Languages and Frameworks
 - Serverside: PHP 7.4
 - Database: MySQL
 
 
-### API
+### Used APIs
 - FPDF
