@@ -2,10 +2,8 @@
 ## Languages and Frameworks
 - Serverside: PHP 7.4.19
 - Database: MySQL
-
-
-## Used APIs
-- FPDF
+- CSS Framework: Bootstrap
+- PDF API: FPDF
 
 ## Installation
 ### Download local server environment
