@@ -1,4 +1,6 @@
-# Online Gas Delivery and Management System with Simple ERP
+# Gaserp
+## Online Delivery and Management System with Simple ERP
+
 ## Languages and Frameworks
 - Serverside: PHP 7.4.19
 - Database: MySQL
