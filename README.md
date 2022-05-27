@@ -1,5 +1,5 @@
 # Gaserp
-## Online Delivery and Management System with Simple ERP
+Online Delivery and Management System with Simple ERP
 
 ## Languages and Frameworks
 - Serverside: PHP 7.4.19
